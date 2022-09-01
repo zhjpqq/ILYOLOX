@@ -1,0 +1,771 @@
+/home/zhangjp/miniconda3/envs/pth182/bin/python /opt/pycharm-2021.1.1/plugins/python/helpers/pydev/pydevconsole.py --mode=client --port=41235
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+sys.path.extend(['/home/zhangjp/projects/now-projects/xmdet220'])
+PyDev console: starting.
+Python 3.7.13 (default, Mar 29 2022, 02:18:16)
+[GCC 7.5.0] on linux
+runfile('/home/zhangjp/projects/now-projects/xmdet220/tools/xxtrain.py', wdir='/home/zhangjp/projects/now-projects/xmdet220/tools')
+/home/zhangjp/miniconda3/envs/pth182/lib/python3.7/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+  return torch._C._cuda_getDeviceCount() > 0
+/home/zhangjp/projects/now-projects/xmdet220/mmdet/utils/setup_env.py:33: UserWarning: Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+  f'Setting OMP_NUM_THREADS environment variable for each process '
+/home/zhangjp/projects/now-projects/xmdet220/mmdet/utils/setup_env.py:43: UserWarning: Setting MKL_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+  f'Setting MKL_NUM_THREADS environment variable for each process '
+2022-05-14 20:10:05,264 - mmdet - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.7.13 (default, Mar 29 2022, 02:18:16) [GCC 7.5.0]
+CUDA available: False
+GCC: gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
+PyTorch: 1.8.0+cu111
+PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.0 Product Build 20191122 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v1.7.0 (Git Hash 7aed236906b1f7a05c0917e5257a1af05e9ff683)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.1, CUDNN_VERSION=8.0.5, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.8.0, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON,
+TorchVision: 0.9.0+cu111
+OpenCV: 4.5.5
+MMCV: 1.4.8
+MMCV Compiler: GCC 7.3
+MMCV CUDA Compiler: 11.1
+MMDetection: 2.23.0+e6cdbec
+------------------------------------------------------------
+2022-05-14 20:10:06,178 - mmdet - INFO - Distributed Training: False
+2022-05-14 20:10:06,985 - mmdet - INFO - Config:
+dataset_type = 'CocoDataset'
+data_root = '/home/softlink/dataset/COCO2017/'
+img_norm_cfg = dict(
+    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
+img_scale_size1 = [320, 352, 384, 416, 448, 480, 512, 544, 576, 608, 640]
+img_scale_size2 = [
+    320, 352, 384, 416, 448, 480, 512, 544, 576, 608, 640, 672, 704, 736, 768,
+    800
+]
+img_scale_size3 = [480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800]
+img_scale_size = (640, 640)
+max_min_size = (640, 640)
+train_pipeline_singlescale = [
+    dict(type='LoadImageFromFile'),
+    dict(type='LoadAnnotations', with_bbox=True),
+    dict(
+        type='Resize',
+        img_scale=(640, 640),
+        multiscale_mode='range',
+        keep_ratio=True),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(
+        type='Normalize',
+        mean=[123.675, 116.28, 103.53],
+        std=[58.395, 57.12, 57.375],
+        to_rgb=True),
+    dict(type='Pad', size_divisor=32),
+    dict(type='DefaultFormatBundle'),
+    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels'])
+]
+train_pipeline_multiscale = [
+    dict(type='LoadImageFromFile'),
+    dict(type='LoadAnnotations', with_bbox=True),
+    dict(
+        type='Resize',
+        img_scale=[(640, 640), (640, 640), (640, 640), (640, 640)],
+        multiscale_mode='value',
+        keep_ratio=True),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(
+        type='Normalize',
+        mean=[123.675, 116.28, 103.53],
+        std=[58.395, 57.12, 57.375],
+        to_rgb=True),
+    dict(type='Pad', size_divisor=32),
+    dict(type='DefaultFormatBundle'),
+    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels'])
+]
+train_pipeline_phdrccms = [
+    dict(type='LoadImageFromFile', to_float32=True, color_type='color'),
+    dict(type='LoadAnnotations', with_bbox=True),
+    dict(
+        type='PhotoMetricDistortion',
+        brightness_delta=32,
+        contrast_range=(0.5, 1.5),
+        saturation_range=(0.5, 1.5),
+        hue_delta=18),
+    dict(
+        type='RandomCenterCropPad',
+        crop_size=(640, 640),
+        ratios=(0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3),
+        mean=[0, 0, 0],
+        std=[1, 1, 1],
+        to_rgb=True,
+        test_pad_mode=None),
+    dict(type='Resize', img_scale=(640, 640), keep_ratio=True),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(
+        type='Normalize',
+        mean=[123.675, 116.28, 103.53],
+        std=[58.395, 57.12, 57.375],
+        to_rgb=True),
+    dict(type='DefaultFormatBundle'),
+    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels'])
+]
+train_pipeline_albmscale = [
+    dict(type='LoadImageFromFile'),
+    dict(type='LoadAnnotations', with_bbox=True),
+    dict(
+        type='Resize',
+        img_scale=[(640, 640), (640, 640), (640, 640), (640, 640)],
+        multiscale_mode='value',
+        keep_ratio=True),
+    dict(
+        type='Albu',
+        transforms=[
+            dict(
+                type='OneOf',
+                transforms=[
+                    dict(
+                        type='RandomBrightnessContrast',
+                        brightness_limit=[-0.3, 0.3],
+                        contrast_limit=[-0.3, 0.3],
+                        p=1),
+                    dict(
+                        type='ColorJitter',
+                        brightness=0.2,
+                        contrast=0.2,
+                        saturation=0.2,
+                        hue=0.2,
+                        always_apply=False,
+                        p=1)
+                ],
+                p=0.3),
+            dict(
+                type='OneOf',
+                transforms=[
+                    dict(
+                        type='GaussNoise',
+                        var_limit=(30.0, 80.0),
+                        mean=0,
+                        per_channel=True,
+                        always_apply=False,
+                        p=1),
+                    dict(type='MotionBlur', blur_limit=(3, 12), p=1)
+                ],
+                p=0.3),
+            dict(
+                type='Cutout',
+                num_holes=72,
+                max_h_size=16,
+                max_w_size=16,
+                fill_value=123,
+                always_apply=False,
+                p=0.3)
+        ],
+        bbox_params=None,
+        keymap=None,
+        update_pad_shape=False,
+        skip_img_without_anno=True),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(
+        type='Normalize',
+        mean=[123.675, 116.28, 103.53],
+        std=[58.395, 57.12, 57.375],
+        to_rgb=True),
+    dict(type='Pad', size_divisor=32),
+    dict(type='DefaultFormatBundle'),
+    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels'])
+]
+test_pipeline_singlescale = [
+    dict(type='LoadImageFromFile'),
+    dict(
+        type='MultiScaleFlipAug',
+        img_scale=(640, 640),
+        flip=False,
+        transforms=[
+            dict(type='Resize', multiscale_mode='range', keep_ratio=True),
+            dict(type='RandomFlip'),
+            dict(
+                type='Normalize',
+                mean=[123.675, 116.28, 103.53],
+                std=[58.395, 57.12, 57.375],
+                to_rgb=True),
+            dict(type='Pad', size_divisor=32),
+            dict(type='ImageToTensor', keys=['img']),
+            dict(type='Collect', keys=['img'])
+        ])
+]
+test_pipeline_multiscale = [
+    dict(type='LoadImageFromFile'),
+    dict(
+        type='MultiScaleFlipAug',
+        img_scale=[(640, 640), (640, 640), (640, 640), (640, 640)],
+        flip=True,
+        transforms=[
+            dict(type='Resize', keep_ratio=True),
+            dict(type='RandomFlip'),
+            dict(
+                type='Normalize',
+                mean=[123.675, 116.28, 103.53],
+                std=[58.395, 57.12, 57.375],
+                to_rgb=True),
+            dict(type='Pad', size_divisor=32),
+            dict(type='ImageToTensor', keys=['img']),
+            dict(type='Collect', keys=['img'])
+        ])
+]
+train_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='LoadAnnotations', with_bbox=True),
+    dict(
+        type='Resize',
+        img_scale=(640, 640),
+        multiscale_mode='range',
+        keep_ratio=True),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(
+        type='Normalize',
+        mean=[123.675, 116.28, 103.53],
+        std=[58.395, 57.12, 57.375],
+        to_rgb=True),
+    dict(type='Pad', size_divisor=32),
+    dict(type='DefaultFormatBundle'),
+    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels'])
+]
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(
+        type='MultiScaleFlipAug',
+        img_scale=(640, 640),
+        flip=False,
+        transforms=[
+            dict(type='Resize', multiscale_mode='range', keep_ratio=True),
+            dict(type='RandomFlip'),
+            dict(
+                type='Normalize',
+                mean=[123.675, 116.28, 103.53],
+                std=[58.395, 57.12, 57.375],
+                to_rgb=True),
+            dict(type='Pad', size_divisor=32),
+            dict(type='ImageToTensor', keys=['img']),
+            dict(type='Collect', keys=['img'])
+        ])
+]
+which = ['', '_mini1k', '_mini2k', '_mini5k', '_mini2w', '_mini3w', '_mini5w']
+trainwhich = ''
+valwhich = ''
+data = dict(
+    samples_per_gpu=4,
+    workers_per_gpu=2,
+    train=dict(
+        type='CocoDataset',
+        ann_file=
+        '/home/softlink/dataset/COCO2017/annotations/instances_train2017.json',
+        img_prefix='/home/softlink/dataset/COCO2017/train2017/',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='LoadAnnotations', with_bbox=True),
+            dict(
+                type='Resize',
+                img_scale=(640, 640),
+                multiscale_mode='range',
+                keep_ratio=True),
+            dict(type='RandomFlip', flip_ratio=0.5),
+            dict(
+                type='Normalize',
+                mean=[123.675, 116.28, 103.53],
+                std=[58.395, 57.12, 57.375],
+                to_rgb=True),
+            dict(type='Pad', size_divisor=32),
+            dict(type='DefaultFormatBundle'),
+            dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels'])
+        ],
+        catwise=True,
+        imgpercent=0.1),
+    val=dict(
+        type='CocoDataset',
+        ann_file=
+        '/home/softlink/dataset/COCO2017/annotations/instances_val2017.json',
+        img_prefix='/home/softlink/dataset/COCO2017/val2017/',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(
+                type='MultiScaleFlipAug',
+                img_scale=(640, 640),
+                flip=False,
+                transforms=[
+                    dict(
+                        type='Resize',
+                        multiscale_mode='range',
+                        keep_ratio=True),
+                    dict(type='RandomFlip'),
+                    dict(
+                        type='Normalize',
+                        mean=[123.675, 116.28, 103.53],
+                        std=[58.395, 57.12, 57.375],
+                        to_rgb=True),
+                    dict(type='Pad', size_divisor=32),
+                    dict(type='ImageToTensor', keys=['img']),
+                    dict(type='Collect', keys=['img'])
+                ])
+        ]),
+    test=dict(
+        type='CocoDataset',
+        ann_file=
+        '/home/softlink/dataset/COCO2017/annotations/instances_val2017.json',
+        img_prefix='/home/softlink/dataset/COCO2017/val2017/',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(
+                type='MultiScaleFlipAug',
+                img_scale=(640, 640),
+                flip=False,
+                transforms=[
+                    dict(
+                        type='Resize',
+                        multiscale_mode='range',
+                        keep_ratio=True),
+                    dict(type='RandomFlip'),
+                    dict(
+                        type='Normalize',
+                        mean=[123.675, 116.28, 103.53],
+                        std=[58.395, 57.12, 57.375],
+                        to_rgb=True),
+                    dict(type='Pad', size_divisor=32),
+                    dict(type='ImageToTensor', keys=['img']),
+                    dict(type='Collect', keys=['img'])
+                ])
+        ]))
+evaluation = dict(interval=1, metric='bbox')
+optimizer = dict(type='AdamW', lr=2.5e-05, weight_decay=0.0001)
+optimizer_config = dict(grad_clip=dict(max_norm=1.0, norm_type=2))
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=500,
+    warmup_ratio=0.001,
+    step=[8, 11])
+runner = dict(type='EpochBasedRunner', max_epochs=12)
+checkpoint_config = dict(interval=1)
+log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
+dist_params = dict(backend='nccl')
+log_level = 'INFO'
+load_from = None
+resume_from = ''
+workflow = [('train', 1)]
+opencv_num_threads = 0
+mp_start_method = 'fork'
+debug = False
+log_interval = 50
+num_stages = 2
+num_query = 100
+QUERY_DIM = 256
+FEAT_DIM = 256
+FF_DIM = 1024
+in_points_list = [32, 32]
+out_patterns_list = [128, 128]
+n_group_list = [4, 4]
+model = dict(
+    type='AaaMixer',
+    backbone=dict(
+        type='ResNet',
+        depth=18,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        norm_eval=True,
+        style='pytorch',
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='/home/softlink/Pretrained/resnet18-5c106cde.pth')),
+    neck=dict(
+        type='ChannelMapping',
+        in_channels=[64, 128, 256, 512],
+        out_channels=256,
+        start_level=0,
+        add_extra_convs='on_output',
+        num_outs=4),
+    rpn_head=dict(
+        type='InitialQueryGenerator',
+        method='xyxy',
+        num_query=100,
+        content_dim=256),
+    roi_head=dict(
+        type='AaaMixerRoiHead',
+        featmap_strides=[4, 8, 16, 32],
+        num_stages=2,
+        stage_loss_weights=[1, 1],
+        content_dim=256,
+        bbox_head=[
+            dict(
+                type='AaaMixerHead',
+                num_classes=80,
+                num_ffn_fcs=2,
+                num_heads=8,
+                num_cls_fcs=1,
+                num_reg_fcs=1,
+                feedforward_channels=1024,
+                content_dim=256,
+                feat_channels=256,
+                dropout=0.0,
+                in_points=32,
+                out_points=128,
+                n_groups=4,
+                ffn_act_cfg=dict(type='ReLU', inplace=True),
+                loss_cls=dict(
+                    type='FocalLoss',
+                    use_sigmoid=True,
+                    gamma=2.0,
+                    alpha=0.25,
+                    loss_weight=2.0),
+                loss_bbox=dict(type='L1Loss', loss_weight=5.0),
+                loss_iou=dict(type='GIoULoss', loss_weight=2.0),
+                loss_dfl=dict(
+                    type='CrossEntropyLoss',
+                    use_sigmoid=True,
+                    reduction='mean',
+                    loss_weight=1.0),
+                reg_val=dict(
+                    min=-1,
+                    max=1,
+                    num=20,
+                    prob='sigmoid',
+                    method='v2',
+                    usedfl=True)),
+            dict(
+                type='AaaMixerHead',
+                num_classes=80,
+                num_ffn_fcs=2,
+                num_heads=8,
+                num_cls_fcs=1,
+                num_reg_fcs=1,
+                feedforward_channels=1024,
+                content_dim=256,
+                feat_channels=256,
+                dropout=0.0,
+                in_points=32,
+                out_points=128,
+                n_groups=4,
+                ffn_act_cfg=dict(type='ReLU', inplace=True),
+                loss_cls=dict(
+                    type='FocalLoss',
+                    use_sigmoid=True,
+                    gamma=2.0,
+                    alpha=0.25,
+                    loss_weight=2.0),
+                loss_bbox=dict(type='L1Loss', loss_weight=5.0),
+                loss_iou=dict(type='GIoULoss', loss_weight=2.0),
+                loss_dfl=dict(
+                    type='CrossEntropyLoss',
+                    use_sigmoid=True,
+                    reduction='mean',
+                    loss_weight=1.0),
+                reg_val=dict(
+                    min=-1,
+                    max=1,
+                    num=20,
+                    prob='sigmoid',
+                    method='v2',
+                    usedfl=True))
+        ]),
+    train_cfg=dict(
+        rpn=None,
+        rcnn=[
+            dict(
+                assigner=dict(
+                    type='HungryAssigner',
+                    cls_cost=dict(type='FocalLossCost', weight=2.0),
+                    reg_cost=dict(type='BBoxL1Cost', weight=5.0),
+                    iou_cost=dict(type='IoUCost', iou_mode='giou', weight=2.0),
+                    dfl_cost=dict(
+                        type='CrossEntropyLossCost',
+                        use_sigmoid=True,
+                        weight=2.0)),
+                sampler=dict(type='PseudoSampler'),
+                pos_weight=1),
+            dict(
+                assigner=dict(
+                    type='HungryAssigner',
+                    cls_cost=dict(type='FocalLossCost', weight=2.0),
+                    reg_cost=dict(type='BBoxL1Cost', weight=5.0),
+                    iou_cost=dict(type='IoUCost', iou_mode='giou', weight=2.0),
+                    dfl_cost=dict(
+                        type='CrossEntropyLossCost',
+                        use_sigmoid=True,
+                        weight=2.0)),
+                sampler=dict(type='PseudoSampler'),
+                pos_weight=1)
+        ]),
+    test_cfg=dict(rpn=None, rcnn=dict(max_per_img=100)))
+postfix = '_0514_2010'
+find_unused_parameters = True
+work_dir = '/home/softlink/zhjpexp/common_exp'
+auto_resume = False
+gpu_ids = [[0, 1, 2, 3]]
+2022-05-14 20:10:06,986 - mmdet - INFO - Set random seed to 111, deterministic: False
+2022-05-14 20:10:07,255 - mmdet - INFO - initialize ResNet with init_cfg {'type': 'Pretrained', 'checkpoint': '/home/softlink/Pretrained/resnet18-5c106cde.pth'}
+2022-05-14 20:10:07,255 - mmcv - INFO - load model from: /home/softlink/Pretrained/resnet18-5c106cde.pth
+2022-05-14 20:10:07,256 - mmcv - INFO - load checkpoint from local path: /home/softlink/Pretrained/resnet18-5c106cde.pth
+2022-05-14 20:10:07,321 - mmcv - WARNING - The model and loaded state dict do not match exactly
+unexpected key in source state_dict: fc.weight, fc.bias
+2022-05-14 20:10:07,329 - mmdet - INFO - initialize ChannelMapping with init_cfg {'type': 'Xavier', 'layer': 'Conv2d', 'distribution': 'uniform'}
+2022-05-14 20:10:07,331 - mmdet - INFO - initialize AaaMixerHead with init_cfg [{'type': 'Normal', 'std': 0.01, 'override': {'name': 'fc_cls'}}, {'type': 'Normal', 'std': 0.001, 'override': {'name': 'fc_reg'}}]
+2022-05-14 20:10:07,414 - mmdet - INFO - initialize AaaMixerHead with init_cfg [{'type': 'Normal', 'std': 0.01, 'override': {'name': 'fc_cls'}}, {'type': 'Normal', 'std': 0.001, 'override': {'name': 'fc_reg'}}]
+DataIL: 训练集, 任务划分：(80,), 任务加载：(1,)
+DataIL: 预测类别 80 个: ('airplane', 'apple', 'backpack', 'banana', 'baseball bat', 'baseball glove', 'bear', 'bed', 'bench', 'bicycle', 'bird', 'boat', 'book', 'bottle', 'bowl', 'broccoli', 'bus', 'cake', 'car', 'carrot', 'cat', 'cell phone', 'chair', 'clock', 'couch', 'cow', 'cup', 'dining table', 'dog', 'donut', 'elephant', 'fire hydrant', 'fork', 'frisbee', 'giraffe', 'hair drier', 'handbag', 'horse', 'hot dog', 'keyboard', 'kite', 'knife', 'laptop', 'microwave', 'motorcycle', 'mouse', 'orange', 'oven', 'parking meter', 'person', 'pizza', 'potted plant', 'refrigerator', 'remote', 'sandwich', 'scissors', 'sheep', 'sink', 'skateboard', 'skis', 'snowboard', 'spoon', 'sports ball', 'stop sign', 'suitcase', 'surfboard', 'teddy bear', 'tennis racket', 'tie', 'toaster', 'toilet', 'toothbrush', 'traffic light', 'train', 'truck', 'tv', 'umbrella', 'vase', 'wine glass', 'zebra')
+DataIL: 加载类别 80 个: ('airplane', 'apple', 'backpack', 'banana', 'baseball bat', 'baseball glove', 'bear', 'bed', 'bench', 'bicycle', 'bird', 'boat', 'book', 'bottle', 'bowl', 'broccoli', 'bus', 'cake', 'car', 'carrot', 'cat', 'cell phone', 'chair', 'clock', 'couch', 'cow', 'cup', 'dining table', 'dog', 'donut', 'elephant', 'fire hydrant', 'fork', 'frisbee', 'giraffe', 'hair drier', 'handbag', 'horse', 'hot dog', 'keyboard', 'kite', 'knife', 'laptop', 'microwave', 'motorcycle', 'mouse', 'orange', 'oven', 'parking meter', 'person', 'pizza', 'potted plant', 'refrigerator', 'remote', 'sandwich', 'scissors', 'sheep', 'sink', 'skateboard', 'skis', 'snowboard', 'spoon', 'sports ball', 'stop sign', 'suitcase', 'surfboard', 'teddy bear', 'tennis racket', 'tie', 'toaster', 'toilet', 'toothbrush', 'traffic light', 'train', 'truck', 'tv', 'umbrella', 'vase', 'wine glass', 'zebra')
+loading annotations into memory...
+Done (t=11.22s)
+creating index...
+index created!
+DataIL: 随机筛选数据集，筛选率:imgpercent=0.1,筛选后图像11726张
+DataIL: 当前加载图像数量为：11726 张！
+DataIL: 验证集, 任务划分：(80,), 任务加载：(1,)
+DataIL: 预测类别 80 个: ('airplane', 'apple', 'backpack', 'banana', 'baseball bat', 'baseball glove', 'bear', 'bed', 'bench', 'bicycle', 'bird', 'boat', 'book', 'bottle', 'bowl', 'broccoli', 'bus', 'cake', 'car', 'carrot', 'cat', 'cell phone', 'chair', 'clock', 'couch', 'cow', 'cup', 'dining table', 'dog', 'donut', 'elephant', 'fire hydrant', 'fork', 'frisbee', 'giraffe', 'hair drier', 'handbag', 'horse', 'hot dog', 'keyboard', 'kite', 'knife', 'laptop', 'microwave', 'motorcycle', 'mouse', 'orange', 'oven', 'parking meter', 'person', 'pizza', 'potted plant', 'refrigerator', 'remote', 'sandwich', 'scissors', 'sheep', 'sink', 'skateboard', 'skis', 'snowboard', 'spoon', 'sports ball', 'stop sign', 'suitcase', 'surfboard', 'teddy bear', 'tennis racket', 'tie', 'toaster', 'toilet', 'toothbrush', 'traffic light', 'train', 'truck', 'tv', 'umbrella', 'vase', 'wine glass', 'zebra')
+DataIL: 加载类别 80 个: ('airplane', 'apple', 'backpack', 'banana', 'baseball bat', 'baseball glove', 'bear', 'bed', 'bench', 'bicycle', 'bird', 'boat', 'book', 'bottle', 'bowl', 'broccoli', 'bus', 'cake', 'car', 'carrot', 'cat', 'cell phone', 'chair', 'clock', 'couch', 'cow', 'cup', 'dining table', 'dog', 'donut', 'elephant', 'fire hydrant', 'fork', 'frisbee', 'giraffe', 'hair drier', 'handbag', 'horse', 'hot dog', 'keyboard', 'kite', 'knife', 'laptop', 'microwave', 'motorcycle', 'mouse', 'orange', 'oven', 'parking meter', 'person', 'pizza', 'potted plant', 'refrigerator', 'remote', 'sandwich', 'scissors', 'sheep', 'sink', 'skateboard', 'skis', 'snowboard', 'spoon', 'sports ball', 'stop sign', 'suitcase', 'surfboard', 'teddy bear', 'tennis racket', 'tie', 'toaster', 'toilet', 'toothbrush', 'traffic light', 'train', 'truck', 'tv', 'umbrella', 'vase', 'wine glass', 'zebra')
+loading annotations into memory...
+Done (t=0.27s)
+creating index...
+index created!
+DataIL: 当前加载图像数量为：4952 张！
+2022-05-14 20:10:20,838 - mmdet - INFO - Start running, host: zhangjp@uos, work_dir: /home/softlink/zhjpexp/common_exp
+2022-05-14 20:10:20,839 - mmdet - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) StepLrUpdaterHook
+(NORMAL      ) CheckpointHook
+(LOW         ) EvalHook
+(VERY_LOW    ) TextLoggerHook
+ --------------------
+before_train_epoch:
+(VERY_HIGH   ) StepLrUpdaterHook
+(LOW         ) IterTimerHook
+(LOW         ) EvalHook
+(VERY_LOW    ) TextLoggerHook
+ --------------------
+before_train_iter:
+(VERY_HIGH   ) StepLrUpdaterHook
+(LOW         ) IterTimerHook
+(LOW         ) EvalHook
+ --------------------
+after_train_iter:
+(ABOVE_NORMAL) OptimizerHook
+(NORMAL      ) CheckpointHook
+(LOW         ) IterTimerHook
+(LOW         ) EvalHook
+(VERY_LOW    ) TextLoggerHook
+ --------------------
+after_train_epoch:
+(NORMAL      ) CheckpointHook
+(LOW         ) EvalHook
+(VERY_LOW    ) TextLoggerHook
+ --------------------
+before_val_epoch:
+(LOW         ) IterTimerHook
+(VERY_LOW    ) TextLoggerHook
+ --------------------
+before_val_iter:
+(LOW         ) IterTimerHook
+ --------------------
+after_val_iter:
+(LOW         ) IterTimerHook
+ --------------------
+after_val_epoch:
+(VERY_LOW    ) TextLoggerHook
+ --------------------
+after_run:
+(VERY_LOW    ) TextLoggerHook
+ --------------------
+2022-05-14 20:10:20,839 - mmdet - INFO - workflow: [('train', 1)], max: 12 epochs
+2022-05-14 20:10:20,839 - mmdet - INFO - Checkpoints will be saved to /home/softlink/zhjpexp/common_exp by HardDiskBackend.
+/home/zhangjp/miniconda3/envs/pth182/lib/python3.7/site-packages/torch/nn/functional.py:1709: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+2022-05-14 20:11:19,633 - mmdet - INFO - Epoch [1][50/2932]	lr: 2.473e-06, eta: 11:28:30, time: 1.176, data_time: 0.049, stage0_loss_cls: 1.6195, stage0_pos_acc: 15.4877, stage0_loss_dfl: 0.9491, stage0_loss_bbox: 7.6160, stage0_loss_iou: 1.8113, stage1_loss_cls: 2.0374, stage1_pos_acc: 7.3634, stage1_loss_dfl: 0.9491, stage1_loss_bbox: 7.5381, stage1_loss_iou: 1.8117, loss: 24.3320, grad_norm: 172.1775
+2022-05-14 20:12:16,384 - mmdet - INFO - Epoch [1][100/2932]	lr: 4.970e-06, eta: 11:15:36, time: 1.135, data_time: 0.004, stage0_loss_cls: 1.2373, stage0_pos_acc: 40.8466, stage0_loss_dfl: 0.9489, stage0_loss_bbox: 7.1335, stage0_loss_iou: 1.8177, stage1_loss_cls: 1.4424, stage1_pos_acc: 31.8576, stage1_loss_dfl: 0.9489, stage1_loss_bbox: 6.6406, stage1_loss_iou: 1.8340, loss: 22.0034, grad_norm: 141.7999
+2022-05-14 20:13:13,679 - mmdet - INFO - Epoch [1][150/2932]	lr: 7.468e-06, eta: 11:12:47, time: 1.146, data_time: 0.004, stage0_loss_cls: 1.0447, stage0_pos_acc: 55.7531, stage0_loss_dfl: 0.9486, stage0_loss_bbox: 5.9800, stage0_loss_iou: 1.8395, stage1_loss_cls: 1.2060, stage1_pos_acc: 43.2725, stage1_loss_dfl: 0.9488, stage1_loss_bbox: 5.1232, stage1_loss_iou: 1.9361, loss: 19.0267, grad_norm: 118.3115
+2022-05-14 20:14:13,836 - mmdet - INFO - Epoch [1][200/2932]	lr: 9.965e-06, eta: 11:19:14, time: 1.203, data_time: 0.005, stage0_loss_cls: 0.9120, stage0_pos_acc: 61.6599, stage0_loss_dfl: 0.9482, stage0_loss_bbox: 5.0795, stage0_loss_iou: 1.9682, stage1_loss_cls: 1.0617, stage1_pos_acc: 52.1599, stage1_loss_dfl: 0.9487, stage1_loss_bbox: 4.5353, stage1_loss_iou: 2.1850, loss: 17.6387, grad_norm: 90.1596
+2022-05-14 20:15:10,613 - mmdet - INFO - Epoch [1][250/2932]	lr: 1.246e-05, eta: 11:14:51, time: 1.136, data_time: 0.004, stage0_loss_cls: 1.0216, stage0_pos_acc: 58.3485, stage0_loss_dfl: 0.9479, stage0_loss_bbox: 4.3497, stage0_loss_iou: 2.0237, stage1_loss_cls: 1.1506, stage1_pos_acc: 47.9633, stage1_loss_dfl: 0.9486, stage1_loss_bbox: 4.0600, stage1_loss_iou: 2.1531, loss: 16.6554, grad_norm: 89.7891
+2022-05-14 20:16:07,959 - mmdet - INFO - Epoch [1][300/2932]	lr: 1.496e-05, eta: 11:12:42, time: 1.147, data_time: 0.004, stage0_loss_cls: 1.1082, stage0_pos_acc: 53.7478, stage0_loss_dfl: 0.9478, stage0_loss_bbox: 3.7993, stage0_loss_iou: 1.9853, stage1_loss_cls: 1.2113, stage1_pos_acc: 43.0355, stage1_loss_dfl: 0.9484, stage1_loss_bbox: 3.5063, stage1_loss_iou: 1.9901, loss: 15.4967, grad_norm: 80.0010
+2022-05-14 20:17:07,727 - mmdet - INFO - Epoch [1][350/2932]	lr: 1.746e-05, eta: 11:14:55, time: 1.195, data_time: 0.004, stage0_loss_cls: 1.3121, stage0_pos_acc: 39.0471, stage0_loss_dfl: 0.9476, stage0_loss_bbox: 2.6944, stage0_loss_iou: 1.8080, stage1_loss_cls: 1.3617, stage1_pos_acc: 34.6642, stage1_loss_dfl: 0.9481, stage1_loss_bbox: 2.3792, stage1_loss_iou: 1.7883, loss: 13.2393, grad_norm: 98.3637
+2022-05-14 20:18:07,314 - mmdet - INFO - Epoch [1][400/2932]	lr: 1.996e-05, eta: 11:16:04, time: 1.192, data_time: 0.004, stage0_loss_cls: 1.4663, stage0_pos_acc: 32.7792, stage0_loss_dfl: 0.9475, stage0_loss_bbox: 2.1536, stage0_loss_iou: 1.6822, stage1_loss_cls: 1.3755, stage1_pos_acc: 32.6282, stage1_loss_dfl: 0.9478, stage1_loss_bbox: 1.8359, stage1_loss_iou: 1.6689, loss: 12.0777, grad_norm: 99.0875
+2022-05-14 20:19:05,082 - mmdet - INFO - Epoch [1][450/2932]	lr: 2.245e-05, eta: 11:14:23, time: 1.155, data_time: 0.004, stage0_loss_cls: 1.5753, stage0_pos_acc: 25.6530, stage0_loss_dfl: 0.9473, stage0_loss_bbox: 1.5728, stage0_loss_iou: 1.5511, stage1_loss_cls: 1.4164, stage1_pos_acc: 27.4371, stage1_loss_dfl: 0.9477, stage1_loss_bbox: 1.3488, stage1_loss_iou: 1.5501, loss: 10.9095, grad_norm: 106.2043
+2022-05-14 20:20:02,798 - mmdet - INFO - Epoch [1][500/2932]	lr: 2.495e-05, eta: 11:12:48, time: 1.154, data_time: 0.004, stage0_loss_cls: 1.4920, stage0_pos_acc: 29.7126, stage0_loss_dfl: 0.9472, stage0_loss_bbox: 1.4082, stage0_loss_iou: 1.5461, stage1_loss_cls: 1.3220, stage1_pos_acc: 32.5517, stage1_loss_dfl: 0.9475, stage1_loss_bbox: 1.2472, stage1_loss_iou: 1.5743, loss: 10.4845, grad_norm: 110.0729
+2022-05-14 20:21:01,514 - mmdet - INFO - Epoch [1][550/2932]	lr: 2.500e-05, eta: 11:12:23, time: 1.174, data_time: 0.004, stage0_loss_cls: 1.4911, stage0_pos_acc: 28.4702, stage0_loss_dfl: 0.9470, stage0_loss_bbox: 1.2725, stage0_loss_iou: 1.5387, stage1_loss_cls: 1.2668, stage1_pos_acc: 35.0942, stage1_loss_dfl: 0.9472, stage1_loss_bbox: 1.1536, stage1_loss_iou: 1.5501, loss: 10.1670, grad_norm: 103.1706
+2022-05-14 20:22:00,275 - mmdet - INFO - Epoch [1][600/2932]	lr: 2.500e-05, eta: 11:11:54, time: 1.175, data_time: 0.004, stage0_loss_cls: 1.4455, stage0_pos_acc: 28.7367, stage0_loss_dfl: 0.9469, stage0_loss_bbox: 1.2402, stage0_loss_iou: 1.5654, stage1_loss_cls: 1.2226, stage1_pos_acc: 36.0715, stage1_loss_dfl: 0.9469, stage1_loss_bbox: 1.1221, stage1_loss_iou: 1.5723, loss: 10.0618, grad_norm: 103.4811
+2022-05-14 20:22:58,163 - mmdet - INFO - Epoch [1][650/2932]	lr: 2.500e-05, eta: 11:10:35, time: 1.158, data_time: 0.004, stage0_loss_cls: 1.3729, stage0_pos_acc: 31.2105, stage0_loss_dfl: 0.9468, stage0_loss_bbox: 1.2528, stage0_loss_iou: 1.5449, stage1_loss_cls: 1.1827, stage1_pos_acc: 36.6172, stage1_loss_dfl: 0.9466, stage1_loss_bbox: 1.1306, stage1_loss_iou: 1.5355, loss: 9.9129, grad_norm: 100.0582
+2022-05-14 20:23:57,981 - mmdet - INFO - Epoch [1][700/2932]	lr: 2.500e-05, eta: 11:10:54, time: 1.196, data_time: 0.004, stage0_loss_cls: 1.4352, stage0_pos_acc: 28.1943, stage0_loss_dfl: 0.9467, stage0_loss_bbox: 1.2076, stage0_loss_iou: 1.5146, stage1_loss_cls: 1.2217, stage1_pos_acc: 36.0642, stage1_loss_dfl: 0.9461, stage1_loss_bbox: 1.0705, stage1_loss_iou: 1.4954, loss: 9.8380, grad_norm: 93.1877
+2022-05-14 20:24:56,650 - mmdet - INFO - Epoch [1][750/2932]	lr: 2.500e-05, eta: 11:10:09, time: 1.173, data_time: 0.004, stage0_loss_cls: 1.4910, stage0_pos_acc: 28.4939, stage0_loss_dfl: 0.9468, stage0_loss_bbox: 1.1798, stage0_loss_iou: 1.4235, stage1_loss_cls: 1.2760, stage1_pos_acc: 34.0633, stage1_loss_dfl: 0.9458, stage1_loss_bbox: 1.0972, stage1_loss_iou: 1.3956, loss: 9.7557, grad_norm: 98.1262
+2022-05-14 20:25:56,145 - mmdet - INFO - Epoch [1][800/2932]	lr: 2.500e-05, eta: 11:09:58, time: 1.190, data_time: 0.004, stage0_loss_cls: 1.3298, stage0_pos_acc: 35.5739, stage0_loss_dfl: 0.9465, stage0_loss_bbox: 1.0956, stage0_loss_iou: 1.5061, stage1_loss_cls: 1.1200, stage1_pos_acc: 41.7691, stage1_loss_dfl: 0.9453, stage1_loss_bbox: 0.9683, stage1_loss_iou: 1.4635, loss: 9.3751, grad_norm: 90.0337
+2022-05-14 20:26:55,195 - mmdet - INFO - Epoch [1][850/2932]	lr: 2.500e-05, eta: 11:09:24, time: 1.181, data_time: 0.004, stage0_loss_cls: 1.3961, stage0_pos_acc: 29.0035, stage0_loss_dfl: 0.9465, stage0_loss_bbox: 1.1066, stage0_loss_iou: 1.4584, stage1_loss_cls: 1.1599, stage1_pos_acc: 39.6834, stage1_loss_dfl: 0.9450, stage1_loss_bbox: 0.9865, stage1_loss_iou: 1.4188, loss: 9.4177, grad_norm: 95.3776
+2022-05-14 20:27:55,026 - mmdet - INFO - Epoch [1][900/2932]	lr: 2.500e-05, eta: 11:09:17, time: 1.197, data_time: 0.004, stage0_loss_cls: 1.3538, stage0_pos_acc: 33.4091, stage0_loss_dfl: 0.9464, stage0_loss_bbox: 1.1151, stage0_loss_iou: 1.4684, stage1_loss_cls: 1.1035, stage1_pos_acc: 41.6544, stage1_loss_dfl: 0.9446, stage1_loss_bbox: 0.9904, stage1_loss_iou: 1.4054, loss: 9.3275, grad_norm: 92.6399
+2022-05-14 20:28:54,418 - mmdet - INFO - Epoch [1][950/2932]	lr: 2.500e-05, eta: 11:08:48, time: 1.188, data_time: 0.004, stage0_loss_cls: 1.3557, stage0_pos_acc: 30.4477, stage0_loss_dfl: 0.9463, stage0_loss_bbox: 1.1444, stage0_loss_iou: 1.4637, stage1_loss_cls: 1.0904, stage1_pos_acc: 42.8058, stage1_loss_dfl: 0.9441, stage1_loss_bbox: 0.9637, stage1_loss_iou: 1.3790, loss: 9.2874, grad_norm: 88.6395
+2022-05-14 20:29:53,949 - mmdet - INFO - Exp name: aaamixer_resnet_qoqo.py
+2022-05-14 20:29:53,949 - mmdet - INFO - Epoch [1][1000/2932]	lr: 2.500e-05, eta: 11:08:21, time: 1.191, data_time: 0.004, stage0_loss_cls: 1.3577, stage0_pos_acc: 30.9414, stage0_loss_dfl: 0.9463, stage0_loss_bbox: 1.1124, stage0_loss_iou: 1.4122, stage1_loss_cls: 1.1480, stage1_pos_acc: 42.4169, stage1_loss_dfl: 0.9437, stage1_loss_bbox: 0.9955, stage1_loss_iou: 1.3479, loss: 9.2639, grad_norm: 94.7972
+2022-05-14 20:30:53,396 - mmdet - INFO - Epoch [1][1050/2932]	lr: 2.500e-05, eta: 11:07:48, time: 1.189, data_time: 0.004, stage0_loss_cls: 1.3136, stage0_pos_acc: 31.3478, stage0_loss_dfl: 0.9461, stage0_loss_bbox: 1.1468, stage0_loss_iou: 1.5227, stage1_loss_cls: 1.1350, stage1_pos_acc: 40.3526, stage1_loss_dfl: 0.9433, stage1_loss_bbox: 0.9503, stage1_loss_iou: 1.4467, loss: 9.4045, grad_norm: 95.3980
+2022-05-14 20:31:53,749 - mmdet - INFO - Epoch [1][1100/2932]	lr: 2.500e-05, eta: 11:07:40, time: 1.207, data_time: 0.004, stage0_loss_cls: 1.2872, stage0_pos_acc: 34.7761, stage0_loss_dfl: 0.9460, stage0_loss_bbox: 1.1113, stage0_loss_iou: 1.5437, stage1_loss_cls: 1.0623, stage1_pos_acc: 45.2997, stage1_loss_dfl: 0.9428, stage1_loss_bbox: 0.9127, stage1_loss_iou: 1.4453, loss: 9.2514, grad_norm: 95.6349
+2022-05-14 20:32:54,172 - mmdet - INFO - Epoch [1][1150/2932]	lr: 2.500e-05, eta: 11:07:31, time: 1.208, data_time: 0.004, stage0_loss_cls: 1.3198, stage0_pos_acc: 32.6596, stage0_loss_dfl: 0.9459, stage0_loss_bbox: 1.1510, stage0_loss_iou: 1.4904, stage1_loss_cls: 1.0886, stage1_pos_acc: 44.3988, stage1_loss_dfl: 0.9427, stage1_loss_bbox: 0.9674, stage1_loss_iou: 1.4061, loss: 9.3119, grad_norm: 94.0732
+2022-05-14 20:33:53,468 - mmdet - INFO - Epoch [1][1200/2932]	lr: 2.500e-05, eta: 11:06:45, time: 1.186, data_time: 0.004, stage0_loss_cls: 1.2586, stage0_pos_acc: 36.8314, stage0_loss_dfl: 0.9458, stage0_loss_bbox: 1.0105, stage0_loss_iou: 1.4533, stage1_loss_cls: 1.0187, stage1_pos_acc: 49.7166, stage1_loss_dfl: 0.9420, stage1_loss_bbox: 0.8564, stage1_loss_iou: 1.3505, loss: 8.8356, grad_norm: 87.6517
+2022-05-14 20:34:53,149 - mmdet - INFO - Epoch [1][1250/2932]	lr: 2.500e-05, eta: 11:06:08, time: 1.194, data_time: 0.004, stage0_loss_cls: 1.2894, stage0_pos_acc: 31.8641, stage0_loss_dfl: 0.9458, stage0_loss_bbox: 1.0840, stage0_loss_iou: 1.4474, stage1_loss_cls: 1.0614, stage1_pos_acc: 42.9759, stage1_loss_dfl: 0.9417, stage1_loss_bbox: 0.9114, stage1_loss_iou: 1.3448, loss: 9.0260, grad_norm: 90.9827
+2022-05-14 20:35:53,033 - mmdet - INFO - Epoch [1][1300/2932]	lr: 2.500e-05, eta: 11:05:35, time: 1.198, data_time: 0.004, stage0_loss_cls: 1.2598, stage0_pos_acc: 33.9972, stage0_loss_dfl: 0.9456, stage0_loss_bbox: 1.0466, stage0_loss_iou: 1.4678, stage1_loss_cls: 1.0392, stage1_pos_acc: 48.7551, stage1_loss_dfl: 0.9411, stage1_loss_bbox: 0.8482, stage1_loss_iou: 1.3505, loss: 8.8988, grad_norm: 80.2331
+2022-05-14 20:36:53,333 - mmdet - INFO - Epoch [1][1350/2932]	lr: 2.500e-05, eta: 11:05:11, time: 1.206, data_time: 0.004, stage0_loss_cls: 1.2723, stage0_pos_acc: 37.4665, stage0_loss_dfl: 0.9456, stage0_loss_bbox: 1.0604, stage0_loss_iou: 1.4311, stage1_loss_cls: 1.0491, stage1_pos_acc: 49.9999, stage1_loss_dfl: 0.9407, stage1_loss_bbox: 0.8470, stage1_loss_iou: 1.3004, loss: 8.8465, grad_norm: 90.8613
+2022-05-14 20:37:53,024 - mmdet - INFO - Epoch [1][1400/2932]	lr: 2.500e-05, eta: 11:04:29, time: 1.194, data_time: 0.004, stage0_loss_cls: 1.2756, stage0_pos_acc: 35.6083, stage0_loss_dfl: 0.9455, stage0_loss_bbox: 1.0896, stage0_loss_iou: 1.4419, stage1_loss_cls: 1.0481, stage1_pos_acc: 48.3984, stage1_loss_dfl: 0.9404, stage1_loss_bbox: 0.9213, stage1_loss_iou: 1.3472, loss: 9.0097, grad_norm: 97.0490
+2022-05-14 20:38:53,285 - mmdet - INFO - Epoch [1][1450/2932]	lr: 2.500e-05, eta: 11:03:59, time: 1.205, data_time: 0.004, stage0_loss_cls: 1.3037, stage0_pos_acc: 29.7177, stage0_loss_dfl: 0.9453, stage0_loss_bbox: 1.0346, stage0_loss_iou: 1.4433, stage1_loss_cls: 1.0893, stage1_pos_acc: 43.6941, stage1_loss_dfl: 0.9401, stage1_loss_bbox: 0.8405, stage1_loss_iou: 1.3151, loss: 8.9119, grad_norm: 86.5366
+2022-05-14 20:39:54,339 - mmdet - INFO - Epoch [1][1500/2932]	lr: 2.500e-05, eta: 11:03:45, time: 1.221, data_time: 0.004, stage0_loss_cls: 1.2514, stage0_pos_acc: 35.8587, stage0_loss_dfl: 0.9452, stage0_loss_bbox: 1.0723, stage0_loss_iou: 1.4669, stage1_loss_cls: 1.0395, stage1_pos_acc: 46.9332, stage1_loss_dfl: 0.9396, stage1_loss_bbox: 0.8399, stage1_loss_iou: 1.3161, loss: 8.8708, grad_norm: 87.4419
+2022-05-14 20:40:54,863 - mmdet - INFO - Epoch [1][1550/2932]	lr: 2.500e-05, eta: 11:03:16, time: 1.210, data_time: 0.004, stage0_loss_cls: 1.2746, stage0_pos_acc: 32.8623, stage0_loss_dfl: 0.9451, stage0_loss_bbox: 1.0356, stage0_loss_iou: 1.4626, stage1_loss_cls: 1.0674, stage1_pos_acc: 47.6798, stage1_loss_dfl: 0.9395, stage1_loss_bbox: 0.8300, stage1_loss_iou: 1.3189, loss: 8.8738, grad_norm: 91.6539
+2022-05-14 20:41:55,892 - mmdet - INFO - Epoch [1][1600/2932]	lr: 2.500e-05, eta: 11:02:56, time: 1.221, data_time: 0.004, stage0_loss_cls: 1.2413, stage0_pos_acc: 36.6640, stage0_loss_dfl: 0.9451, stage0_loss_bbox: 1.0151, stage0_loss_iou: 1.4046, stage1_loss_cls: 1.0230, stage1_pos_acc: 49.8158, stage1_loss_dfl: 0.9392, stage1_loss_bbox: 0.8009, stage1_loss_iou: 1.2580, loss: 8.6272, grad_norm: 90.5729
+2022-05-14 20:42:58,103 - mmdet - INFO - Epoch [1][1650/2932]	lr: 2.500e-05, eta: 11:02:58, time: 1.244, data_time: 0.004, stage0_loss_cls: 1.2579, stage0_pos_acc: 36.5805, stage0_loss_dfl: 0.9450, stage0_loss_bbox: 1.0432, stage0_loss_iou: 1.4146, stage1_loss_cls: 1.0707, stage1_pos_acc: 46.4093, stage1_loss_dfl: 0.9385, stage1_loss_bbox: 0.8354, stage1_loss_iou: 1.2673, loss: 8.7726, grad_norm: 87.9091
+2022-05-14 20:43:58,456 - mmdet - INFO - Epoch [1][1700/2932]	lr: 2.500e-05, eta: 11:02:19, time: 1.207, data_time: 0.004, stage0_loss_cls: 1.2176, stage0_pos_acc: 33.9076, stage0_loss_dfl: 0.9449, stage0_loss_bbox: 1.0511, stage0_loss_iou: 1.4309, stage1_loss_cls: 0.9918, stage1_pos_acc: 51.1872, stage1_loss_dfl: 0.9381, stage1_loss_bbox: 0.8327, stage1_loss_iou: 1.2768, loss: 8.6840, grad_norm: 90.8880
+2022-05-14 20:44:59,544 - mmdet - INFO - Epoch [1][1750/2932]	lr: 2.500e-05, eta: 11:01:53, time: 1.222, data_time: 0.004, stage0_loss_cls: 1.2700, stage0_pos_acc: 35.2688, stage0_loss_dfl: 0.9449, stage0_loss_bbox: 1.0171, stage0_loss_iou: 1.3818, stage1_loss_cls: 1.1010, stage1_pos_acc: 43.3769, stage1_loss_dfl: 0.9377, stage1_loss_bbox: 0.7907, stage1_loss_iou: 1.1954, loss: 8.6385, grad_norm: 96.3894
+2022-05-14 20:46:01,786 - mmdet - INFO - Epoch [1][1800/2932]	lr: 2.500e-05, eta: 11:01:47, time: 1.245, data_time: 0.004, stage0_loss_cls: 1.1994, stage0_pos_acc: 39.3380, stage0_loss_dfl: 0.9447, stage0_loss_bbox: 0.9946, stage0_loss_iou: 1.4157, stage1_loss_cls: 1.0225, stage1_pos_acc: 50.2249, stage1_loss_dfl: 0.9371, stage1_loss_bbox: 0.7629, stage1_loss_iou: 1.2535, loss: 8.5306, grad_norm: 89.0286
+2022-05-14 20:47:03,933 - mmdet - INFO - Epoch [1][1850/2932]	lr: 2.500e-05, eta: 11:01:35, time: 1.243, data_time: 0.004, stage0_loss_cls: 1.2077, stage0_pos_acc: 39.6979, stage0_loss_dfl: 0.9446, stage0_loss_bbox: 0.9999, stage0_loss_iou: 1.4282, stage1_loss_cls: 0.9893, stage1_pos_acc: 53.0130, stage1_loss_dfl: 0.9371, stage1_loss_bbox: 0.7543, stage1_loss_iou: 1.2585, loss: 8.5196, grad_norm: 94.7228
+2022-05-14 20:48:04,407 - mmdet - INFO - Epoch [1][1900/2932]	lr: 2.500e-05, eta: 11:00:52, time: 1.209, data_time: 0.004, stage0_loss_cls: 1.1636, stage0_pos_acc: 38.8517, stage0_loss_dfl: 0.9445, stage0_loss_bbox: 0.9523, stage0_loss_iou: 1.4579, stage1_loss_cls: 0.9496, stage1_pos_acc: 54.3715, stage1_loss_dfl: 0.9368, stage1_loss_bbox: 0.7576, stage1_loss_iou: 1.2928, loss: 8.4551, grad_norm: 96.2611
+2022-05-14 20:49:05,487 - mmdet - INFO - Epoch [1][1950/2932]	lr: 2.500e-05, eta: 11:00:18, time: 1.222, data_time: 0.004, stage0_loss_cls: 1.2177, stage0_pos_acc: 38.2806, stage0_loss_dfl: 0.9444, stage0_loss_bbox: 0.9940, stage0_loss_iou: 1.4305, stage1_loss_cls: 1.0148, stage1_pos_acc: 48.6480, stage1_loss_dfl: 0.9362, stage1_loss_bbox: 0.7524, stage1_loss_iou: 1.2380, loss: 8.5280, grad_norm: 87.5401
+2022-05-14 20:50:05,498 - mmdet - INFO - Exp name: aaamixer_resnet_qoqo.py
+2022-05-14 20:50:05,498 - mmdet - INFO - Epoch [1][2000/2932]	lr: 2.500e-05, eta: 10:59:25, time: 1.200, data_time: 0.004, stage0_loss_cls: 1.1956, stage0_pos_acc: 40.6562, stage0_loss_dfl: 0.9443, stage0_loss_bbox: 0.9694, stage0_loss_iou: 1.4138, stage1_loss_cls: 0.9944, stage1_pos_acc: 50.8063, stage1_loss_dfl: 0.9359, stage1_loss_bbox: 0.7098, stage1_loss_iou: 1.2314, loss: 8.3946, grad_norm: 92.9379
+2022-05-14 20:51:06,499 - mmdet - INFO - Epoch [1][2050/2932]	lr: 2.500e-05, eta: 10:58:48, time: 1.220, data_time: 0.004, stage0_loss_cls: 1.2222, stage0_pos_acc: 35.6788, stage0_loss_dfl: 0.9443, stage0_loss_bbox: 0.9685, stage0_loss_iou: 1.3711, stage1_loss_cls: 1.0156, stage1_pos_acc: 49.0545, stage1_loss_dfl: 0.9357, stage1_loss_bbox: 0.7471, stage1_loss_iou: 1.2143, loss: 8.4188, grad_norm: 92.3273
+2022-05-14 20:52:08,524 - mmdet - INFO - Epoch [1][2100/2932]	lr: 2.500e-05, eta: 10:58:26, time: 1.240, data_time: 0.004, stage0_loss_cls: 1.2280, stage0_pos_acc: 36.6549, stage0_loss_dfl: 0.9441, stage0_loss_bbox: 0.9704, stage0_loss_iou: 1.3899, stage1_loss_cls: 1.0301, stage1_pos_acc: 48.1707, stage1_loss_dfl: 0.9348, stage1_loss_bbox: 0.7726, stage1_loss_iou: 1.2309, loss: 8.5009, grad_norm: 88.5561
+2022-05-14 20:53:10,362 - mmdet - INFO - Epoch [1][2150/2932]	lr: 2.500e-05, eta: 10:57:59, time: 1.237, data_time: 0.004, stage0_loss_cls: 1.2155, stage0_pos_acc: 38.2131, stage0_loss_dfl: 0.9441, stage0_loss_bbox: 1.0014, stage0_loss_iou: 1.3797, stage1_loss_cls: 1.0254, stage1_pos_acc: 51.4680, stage1_loss_dfl: 0.9350, stage1_loss_bbox: 0.7958, stage1_loss_iou: 1.2249, loss: 8.5218, grad_norm: 93.1889
+2022-05-14 20:54:10,223 - mmdet - INFO - Epoch [1][2200/2932]	lr: 2.500e-05, eta: 10:57:01, time: 1.197, data_time: 0.004, stage0_loss_cls: 1.2626, stage0_pos_acc: 33.2549, stage0_loss_dfl: 0.9440, stage0_loss_bbox: 0.9883, stage0_loss_iou: 1.4288, stage1_loss_cls: 1.0660, stage1_pos_acc: 45.6172, stage1_loss_dfl: 0.9343, stage1_loss_bbox: 0.7839, stage1_loss_iou: 1.2625, loss: 8.6705, grad_norm: 99.5269
+2022-05-14 20:55:10,816 - mmdet - INFO - Epoch [1][2250/2932]	lr: 2.500e-05, eta: 10:56:13, time: 1.212, data_time: 0.004, stage0_loss_cls: 1.2185, stage0_pos_acc: 35.9496, stage0_loss_dfl: 0.9439, stage0_loss_bbox: 0.9820, stage0_loss_iou: 1.4058, stage1_loss_cls: 1.0109, stage1_pos_acc: 50.5675, stage1_loss_dfl: 0.9341, stage1_loss_bbox: 0.7601, stage1_loss_iou: 1.2272, loss: 8.4826, grad_norm: 94.2441
+2022-05-14 20:56:11,521 - mmdet - INFO - Epoch [1][2300/2932]	lr: 2.500e-05, eta: 10:55:27, time: 1.214, data_time: 0.004, stage0_loss_cls: 1.2038, stage0_pos_acc: 37.7417, stage0_loss_dfl: 0.9438, stage0_loss_bbox: 1.0157, stage0_loss_iou: 1.4059, stage1_loss_cls: 1.0128, stage1_pos_acc: 52.0686, stage1_loss_dfl: 0.9339, stage1_loss_bbox: 0.7658, stage1_loss_iou: 1.2161, loss: 8.4978, grad_norm: 94.3590
+2022-05-14 20:57:15,372 - mmdet - INFO - Epoch [1][2350/2932]	lr: 2.500e-05, eta: 10:55:24, time: 1.277, data_time: 0.004, stage0_loss_cls: 1.1689, stage0_pos_acc: 42.2161, stage0_loss_dfl: 0.9438, stage0_loss_bbox: 0.9976, stage0_loss_iou: 1.3901, stage1_loss_cls: 0.9688, stage1_pos_acc: 55.4140, stage1_loss_dfl: 0.9336, stage1_loss_bbox: 0.7399, stage1_loss_iou: 1.1937, loss: 8.3363, grad_norm: 94.6660
+2022-05-14 20:58:17,341 - mmdet - INFO - Epoch [1][2400/2932]	lr: 2.500e-05, eta: 10:54:52, time: 1.239, data_time: 0.004, stage0_loss_cls: 1.2269, stage0_pos_acc: 34.3757, stage0_loss_dfl: 0.9436, stage0_loss_bbox: 0.9695, stage0_loss_iou: 1.3771, stage1_loss_cls: 1.0352, stage1_pos_acc: 49.2732, stage1_loss_dfl: 0.9329, stage1_loss_bbox: 0.7105, stage1_loss_iou: 1.1779, loss: 8.3735, grad_norm: 94.3280
+2022-05-14 20:59:19,427 - mmdet - INFO - Epoch [1][2450/2932]	lr: 2.500e-05, eta: 10:54:21, time: 1.242, data_time: 0.004, stage0_loss_cls: 1.1720, stage0_pos_acc: 38.5803, stage0_loss_dfl: 0.9436, stage0_loss_bbox: 0.9613, stage0_loss_iou: 1.3928, stage1_loss_cls: 0.9908, stage1_pos_acc: 49.6857, stage1_loss_dfl: 0.9327, stage1_loss_bbox: 0.7447, stage1_loss_iou: 1.2342, loss: 8.3722, grad_norm: 96.2752
+2022-05-14 21:00:20,130 - mmdet - INFO - Epoch [1][2500/2932]	lr: 2.500e-05, eta: 10:53:31, time: 1.214, data_time: 0.004, stage0_loss_cls: 1.1911, stage0_pos_acc: 37.3864, stage0_loss_dfl: 0.9434, stage0_loss_bbox: 0.9875, stage0_loss_iou: 1.4726, stage1_loss_cls: 0.9891, stage1_pos_acc: 52.3966, stage1_loss_dfl: 0.9325, stage1_loss_bbox: 0.7458, stage1_loss_iou: 1.2957, loss: 8.5578, grad_norm: 103.9833
+2022-05-14 21:01:22,642 - mmdet - INFO - Epoch [1][2550/2932]	lr: 2.500e-05, eta: 10:53:03, time: 1.250, data_time: 0.004, stage0_loss_cls: 1.1559, stage0_pos_acc: 39.5314, stage0_loss_dfl: 0.9434, stage0_loss_bbox: 0.9528, stage0_loss_iou: 1.3761, stage1_loss_cls: 0.9630, stage1_pos_acc: 53.9283, stage1_loss_dfl: 0.9321, stage1_loss_bbox: 0.7290, stage1_loss_iou: 1.1993, loss: 8.2516, grad_norm: 93.4525
+2022-05-14 21:02:25,528 - mmdet - INFO - Epoch [1][2600/2932]	lr: 2.500e-05, eta: 10:52:39, time: 1.258, data_time: 0.004, stage0_loss_cls: 1.1701, stage0_pos_acc: 39.7463, stage0_loss_dfl: 0.9433, stage0_loss_bbox: 1.0177, stage0_loss_iou: 1.3977, stage1_loss_cls: 0.9991, stage1_pos_acc: 49.0285, stage1_loss_dfl: 0.9316, stage1_loss_bbox: 0.7532, stage1_loss_iou: 1.1953, loss: 8.4081, grad_norm: 95.9526
+2022-05-14 21:03:27,615 - mmdet - INFO - Epoch [1][2650/2932]	lr: 2.500e-05, eta: 10:52:03, time: 1.242, data_time: 0.004, stage0_loss_cls: 1.1802, stage0_pos_acc: 37.0956, stage0_loss_dfl: 0.9432, stage0_loss_bbox: 1.0047, stage0_loss_iou: 1.3938, stage1_loss_cls: 0.9748, stage1_pos_acc: 54.1215, stage1_loss_dfl: 0.9311, stage1_loss_bbox: 0.7386, stage1_loss_iou: 1.1828, loss: 8.3492, grad_norm: 106.0277
+2022-05-14 21:04:29,656 - mmdet - INFO - Epoch [1][2700/2932]	lr: 2.500e-05, eta: 10:51:26, time: 1.241, data_time: 0.004, stage0_loss_cls: 1.2316, stage0_pos_acc: 37.3823, stage0_loss_dfl: 0.9432, stage0_loss_bbox: 0.9949, stage0_loss_iou: 1.3148, stage1_loss_cls: 1.0217, stage1_pos_acc: 53.3240, stage1_loss_dfl: 0.9311, stage1_loss_bbox: 0.7615, stage1_loss_iou: 1.1296, loss: 8.3284, grad_norm: 108.4640
+2022-05-14 21:05:31,389 - mmdet - INFO - Epoch [1][2750/2932]	lr: 2.500e-05, eta: 10:50:44, time: 1.235, data_time: 0.004, stage0_loss_cls: 1.1949, stage0_pos_acc: 36.7380, stage0_loss_dfl: 0.9430, stage0_loss_bbox: 0.9659, stage0_loss_iou: 1.4073, stage1_loss_cls: 1.0190, stage1_pos_acc: 46.5436, stage1_loss_dfl: 0.9307, stage1_loss_bbox: 0.7366, stage1_loss_iou: 1.2266, loss: 8.4240, grad_norm: 95.9238
+2022-05-14 21:06:33,960 - mmdet - INFO - Epoch [1][2800/2932]	lr: 2.500e-05, eta: 10:50:12, time: 1.251, data_time: 0.004, stage0_loss_cls: 1.1782, stage0_pos_acc: 39.5620, stage0_loss_dfl: 0.9429, stage0_loss_bbox: 0.9954, stage0_loss_iou: 1.3926, stage1_loss_cls: 0.9707, stage1_pos_acc: 50.6412, stage1_loss_dfl: 0.9302, stage1_loss_bbox: 0.7520, stage1_loss_iou: 1.1915, loss: 8.3535, grad_norm: 100.0615
+2022-05-14 21:07:36,522 - mmdet - INFO - Epoch [1][2850/2932]	lr: 2.500e-05, eta: 10:49:38, time: 1.251, data_time: 0.004, stage0_loss_cls: 1.1889, stage0_pos_acc: 38.6349, stage0_loss_dfl: 0.9428, stage0_loss_bbox: 0.9823, stage0_loss_iou: 1.4153, stage1_loss_cls: 0.9979, stage1_pos_acc: 51.8092, stage1_loss_dfl: 0.9298, stage1_loss_bbox: 0.7348, stage1_loss_iou: 1.2197, loss: 8.4115, grad_norm: 97.3814
+2022-05-14 21:08:38,952 - mmdet - INFO - Epoch [1][2900/2932]	lr: 2.500e-05, eta: 10:49:02, time: 1.249, data_time: 0.004, stage0_loss_cls: 1.1488, stage0_pos_acc: 39.3244, stage0_loss_dfl: 0.9428, stage0_loss_bbox: 0.9490, stage0_loss_iou: 1.3574, stage1_loss_cls: 0.9588, stage1_pos_acc: 50.5022, stage1_loss_dfl: 0.9298, stage1_loss_bbox: 0.7059, stage1_loss_iou: 1.1662, loss: 8.1587, grad_norm: 88.4807
+2022-05-14 21:09:20,151 - mmdet - INFO - Saving checkpoint at 1 epochs
+[>>>>>>>>>>>>>>>>>>>>>>>>>>] 4952/4952, 3.8 task/s, elapsed: 1307s, ETA:     0s2022-05-14 21:31:18,170 - mmdet - INFO - Evaluating bbox...
+Loading and preparing results...
+DONE (t=2.46s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=28.17s).
+Accumulating evaluation results...
+DONE (t=10.72s).
+2022-05-14 21:32:02,771 - mmdet - INFO -
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.018
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.053
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.009
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.004
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.015
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.031
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.113
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.113
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.113
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.010
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.076
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.213
+2022-05-14 21:32:03,592 - mmdet - INFO -
+========= 各任务阶段测试结果 =========
+2022-05-14 21:32:03,592 - mmdet - INFO - task_mAP_list==> [{}]
+2022-05-14 21:32:03,593 - mmdet - INFO - task_mAP_dict==> {'Task1(80类)': 0, 'TaskAvgMAP': 0.0}
+2022-05-14 21:32:03,593 - mmdet - INFO - ==================================
+2022-05-14 21:32:03,655 - mmdet - INFO - Exp name: aaamixer_resnet_qoqo.py
+2022-05-14 21:32:03,656 - mmdet - INFO - Epoch(val) [1][4952]	bbox_mAP: 0.0180, bbox_mAP_50: 0.0530, bbox_mAP_75: 0.0090, bbox_mAP_s: 0.0040, bbox_mAP_m: 0.0150, bbox_mAP_l: 0.0310, bbox_mAP_copypaste: 0.018 0.053 0.009 0.004 0.015 0.031
+2022-05-14 21:33:12,468 - mmdet - INFO - Epoch [2][50/2932]	lr: 2.500e-05, eta: 10:41:58, time: 1.376, data_time: 0.051, stage0_loss_cls: 1.1373, stage0_pos_acc: 40.0623, stage0_loss_dfl: 0.9426, stage0_loss_bbox: 0.9359, stage0_loss_iou: 1.4141, stage1_loss_cls: 0.9256, stage1_pos_acc: 55.2468, stage1_loss_dfl: 0.9290, stage1_loss_bbox: 0.7114, stage1_loss_iou: 1.2197, loss: 8.2156, grad_norm: 90.9432
+2022-05-14 21:34:15,773 - mmdet - INFO - Epoch [2][100/2932]	lr: 2.500e-05, eta: 10:41:35, time: 1.266, data_time: 0.004, stage0_loss_cls: 1.1773, stage0_pos_acc: 39.7950, stage0_loss_dfl: 0.9426, stage0_loss_bbox: 0.9703, stage0_loss_iou: 1.3816, stage1_loss_cls: 0.9889, stage1_pos_acc: 53.5006, stage1_loss_dfl: 0.9287, stage1_loss_bbox: 0.7425, stage1_loss_iou: 1.1771, loss: 8.3088, grad_norm: 95.9203
+2022-05-14 21:35:20,549 - mmdet - INFO - Epoch [2][150/2932]	lr: 2.500e-05, eta: 10:41:26, time: 1.295, data_time: 0.004, stage0_loss_cls: 1.1459, stage0_pos_acc: 41.1636, stage0_loss_dfl: 0.9425, stage0_loss_bbox: 0.9486, stage0_loss_iou: 1.3735, stage1_loss_cls: 0.9569, stage1_pos_acc: 56.0647, stage1_loss_dfl: 0.9283, stage1_loss_bbox: 0.7124, stage1_loss_iou: 1.1707, loss: 8.1788, grad_norm: 97.0431
+2022-05-14 21:36:24,528 - mmdet - INFO - Epoch [2][200/2932]	lr: 2.500e-05, eta: 10:41:08, time: 1.280, data_time: 0.005, stage0_loss_cls: 1.1857, stage0_pos_acc: 42.5563, stage0_loss_dfl: 0.9424, stage0_loss_bbox: 0.9685, stage0_loss_iou: 1.3791, stage1_loss_cls: 0.9927, stage1_pos_acc: 53.3216, stage1_loss_dfl: 0.9280, stage1_loss_bbox: 0.7369, stage1_loss_iou: 1.1882, loss: 8.3216, grad_norm: 100.0102
+2022-05-14 21:37:27,294 - mmdet - INFO - Epoch [2][250/2932]	lr: 2.500e-05, eta: 10:40:35, time: 1.255, data_time: 0.005, stage0_loss_cls: 1.1196, stage0_pos_acc: 43.8546, stage0_loss_dfl: 0.9424, stage0_loss_bbox: 0.9508, stage0_loss_iou: 1.3249, stage1_loss_cls: 0.9501, stage1_pos_acc: 55.3393, stage1_loss_dfl: 0.9279, stage1_loss_bbox: 0.7316, stage1_loss_iou: 1.1130, loss: 8.0603, grad_norm: 98.5715
+2022-05-14 21:38:30,201 - mmdet - INFO - Epoch [2][300/2932]	lr: 2.500e-05, eta: 10:40:03, time: 1.258, data_time: 0.004, stage0_loss_cls: 1.1559, stage0_pos_acc: 43.5088, stage0_loss_dfl: 0.9423, stage0_loss_bbox: 0.9321, stage0_loss_iou: 1.3484, stage1_loss_cls: 0.9592, stage1_pos_acc: 55.1518, stage1_loss_dfl: 0.9275, stage1_loss_bbox: 0.6948, stage1_loss_iou: 1.1515, loss: 8.1117, grad_norm: 94.3391
+2022-05-14 21:39:32,049 - mmdet - INFO - Epoch [2][350/2932]	lr: 2.500e-05, eta: 10:39:20, time: 1.237, data_time: 0.004, stage0_loss_cls: 1.1105, stage0_pos_acc: 40.2702, stage0_loss_dfl: 0.9422, stage0_loss_bbox: 0.9368, stage0_loss_iou: 1.3568, stage1_loss_cls: 0.9297, stage1_pos_acc: 54.5443, stage1_loss_dfl: 0.9270, stage1_loss_bbox: 0.6881, stage1_loss_iou: 1.1466, loss: 8.0376, grad_norm: 97.5822
+2022-05-14 21:40:34,616 - mmdet - INFO - Epoch [2][400/2932]	lr: 2.500e-05, eta: 10:38:44, time: 1.251, data_time: 0.004, stage0_loss_cls: 1.1427, stage0_pos_acc: 40.3130, stage0_loss_dfl: 0.9420, stage0_loss_bbox: 0.9089, stage0_loss_iou: 1.3686, stage1_loss_cls: 0.9582, stage1_pos_acc: 55.0361, stage1_loss_dfl: 0.9264, stage1_loss_bbox: 0.6718, stage1_loss_iou: 1.1467, loss: 8.0653, grad_norm: 99.0805
+2022-05-14 21:41:38,700 - mmdet - INFO - Epoch [2][450/2932]	lr: 2.500e-05, eta: 10:38:20, time: 1.282, data_time: 0.004, stage0_loss_cls: 1.1466, stage0_pos_acc: 42.1967, stage0_loss_dfl: 0.9420, stage0_loss_bbox: 0.9046, stage0_loss_iou: 1.3325, stage1_loss_cls: 0.9529, stage1_pos_acc: 55.2313, stage1_loss_dfl: 0.9264, stage1_loss_bbox: 0.6578, stage1_loss_iou: 1.1216, loss: 7.9844, grad_norm: 97.8572
+2022-05-14 21:42:42,256 - mmdet - INFO - Epoch [2][500/2932]	lr: 2.500e-05, eta: 10:37:51, time: 1.271, data_time: 0.004, stage0_loss_cls: 1.1411, stage0_pos_acc: 41.6751, stage0_loss_dfl: 0.9419, stage0_loss_bbox: 0.9204, stage0_loss_iou: 1.3452, stage1_loss_cls: 0.9764, stage1_pos_acc: 54.3987, stage1_loss_dfl: 0.9258, stage1_loss_bbox: 0.6792, stage1_loss_iou: 1.1296, loss: 8.0598, grad_norm: 105.4191
+2022-05-14 21:43:45,394 - mmdet - INFO - Epoch [2][550/2932]	lr: 2.500e-05, eta: 10:37:17, time: 1.263, data_time: 0.005, stage0_loss_cls: 1.1408, stage0_pos_acc: 41.8739, stage0_loss_dfl: 0.9418, stage0_loss_bbox: 0.9434, stage0_loss_iou: 1.3844, stage1_loss_cls: 0.9421, stage1_pos_acc: 56.4109, stage1_loss_dfl: 0.9253, stage1_loss_bbox: 0.6528, stage1_loss_iou: 1.1518, loss: 8.0824, grad_norm: 95.2656
+2022-05-14 21:44:48,822 - mmdet - INFO - Epoch [2][600/2932]	lr: 2.500e-05, eta: 10:36:45, time: 1.269, data_time: 0.005, stage0_loss_cls: 1.1375, stage0_pos_acc: 39.7655, stage0_loss_dfl: 0.9417, stage0_loss_bbox: 0.9182, stage0_loss_iou: 1.3587, stage1_loss_cls: 0.9417, stage1_pos_acc: 53.2137, stage1_loss_dfl: 0.9250, stage1_loss_bbox: 0.6751, stage1_loss_iou: 1.1454, loss: 8.0435, grad_norm: 103.5391
+2022-05-14 21:45:50,662 - mmdet - INFO - Epoch [2][650/2932]	lr: 2.500e-05, eta: 10:35:57, time: 1.237, data_time: 0.005, stage0_loss_cls: 1.1445, stage0_pos_acc: 39.3455, stage0_loss_dfl: 0.9417, stage0_loss_bbox: 0.9722, stage0_loss_iou: 1.3555, stage1_loss_cls: 0.9746, stage1_pos_acc: 53.2943, stage1_loss_dfl: 0.9249, stage1_loss_bbox: 0.7102, stage1_loss_iou: 1.1408, loss: 8.1644, grad_norm: 92.4397
+2022-05-14 21:46:54,234 - mmdet - INFO - Epoch [2][700/2932]	lr: 2.500e-05, eta: 10:35:25, time: 1.271, data_time: 0.005, stage0_loss_cls: 1.1250, stage0_pos_acc: 40.3660, stage0_loss_dfl: 0.9416, stage0_loss_bbox: 0.9349, stage0_loss_iou: 1.3827, stage1_loss_cls: 0.9430, stage1_pos_acc: 53.1870, stage1_loss_dfl: 0.9245, stage1_loss_bbox: 0.7003, stage1_loss_iou: 1.1662, loss: 8.1182, grad_norm: 92.8437
+2022-05-14 21:48:00,697 - mmdet - INFO - Epoch [2][750/2932]	lr: 2.500e-05, eta: 10:35:16, time: 1.329, data_time: 0.005, stage0_loss_cls: 1.1258, stage0_pos_acc: 42.4871, stage0_loss_dfl: 0.9415, stage0_loss_bbox: 0.9205, stage0_loss_iou: 1.3888, stage1_loss_cls: 0.9592, stage1_pos_acc: 55.6879, stage1_loss_dfl: 0.9239, stage1_loss_bbox: 0.6698, stage1_loss_iou: 1.1530, loss: 8.0826, grad_norm: 102.5998
+2022-05-14 21:49:05,582 - mmdet - INFO - Epoch [2][800/2932]	lr: 2.500e-05, eta: 10:34:52, time: 1.298, data_time: 0.005, stage0_loss_cls: 1.1150, stage0_pos_acc: 42.0566, stage0_loss_dfl: 0.9416, stage0_loss_bbox: 0.9538, stage0_loss_iou: 1.3674, stage1_loss_cls: 0.9207, stage1_pos_acc: 56.6494, stage1_loss_dfl: 0.9236, stage1_loss_bbox: 0.7002, stage1_loss_iou: 1.1417, loss: 8.0639, grad_norm: 100.8212
+2022-05-14 21:50:11,957 - mmdet - INFO - Epoch [2][850/2932]	lr: 2.500e-05, eta: 10:34:40, time: 1.327, data_time: 0.005, stage0_loss_cls: 1.1058, stage0_pos_acc: 42.3166, stage0_loss_dfl: 0.9414, stage0_loss_bbox: 0.9373, stage0_loss_iou: 1.3516, stage1_loss_cls: 0.9149, stage1_pos_acc: 56.5819, stage1_loss_dfl: 0.9231, stage1_loss_bbox: 0.6690, stage1_loss_iou: 1.1259, loss: 7.9691, grad_norm: 99.2629
+2022-05-14 21:51:14,960 - mmdet - INFO - Epoch [2][900/2932]	lr: 2.500e-05, eta: 10:33:59, time: 1.260, data_time: 0.005, stage0_loss_cls: 1.1259, stage0_pos_acc: 39.4165, stage0_loss_dfl: 0.9412, stage0_loss_bbox: 0.9071, stage0_loss_iou: 1.3799, stage1_loss_cls: 0.9303, stage1_pos_acc: 57.1796, stage1_loss_dfl: 0.9228, stage1_loss_bbox: 0.6608, stage1_loss_iou: 1.1598, loss: 8.0279, grad_norm: 98.7704
+2022-05-14 21:52:17,264 - mmdet - INFO - Epoch [2][950/2932]	lr: 2.500e-05, eta: 10:33:12, time: 1.246, data_time: 0.005, stage0_loss_cls: 1.1339, stage0_pos_acc: 40.7915, stage0_loss_dfl: 0.9413, stage0_loss_bbox: 0.9440, stage0_loss_iou: 1.3354, stage1_loss_cls: 0.9605, stage1_pos_acc: 52.6281, stage1_loss_dfl: 0.9229, stage1_loss_bbox: 0.7099, stage1_loss_iou: 1.1266, loss: 8.0746, grad_norm: 96.5612
+2022-05-14 21:53:21,380 - mmdet - INFO - Epoch [2][1000/2932]	lr: 2.500e-05, eta: 10:32:38, time: 1.282, data_time: 0.005, stage0_loss_cls: 1.1456, stage0_pos_acc: 39.6788, stage0_loss_dfl: 0.9411, stage0_loss_bbox: 0.9080, stage0_loss_iou: 1.3406, stage1_loss_cls: 0.9479, stage1_pos_acc: 53.0227, stage1_loss_dfl: 0.9224, stage1_loss_bbox: 0.6599, stage1_loss_iou: 1.1163, loss: 7.9818, grad_norm: 98.8899
+2022-05-14 21:54:28,841 - mmdet - INFO - Epoch [2][1050/2932]	lr: 2.500e-05, eta: 10:32:30, time: 1.349, data_time: 0.005, stage0_loss_cls: 1.0725, stage0_pos_acc: 44.8647, stage0_loss_dfl: 0.9410, stage0_loss_bbox: 0.9119, stage0_loss_iou: 1.3725, stage1_loss_cls: 0.8933, stage1_pos_acc: 57.7182, stage1_loss_dfl: 0.9219, stage1_loss_bbox: 0.6779, stage1_loss_iou: 1.1510, loss: 7.9421, grad_norm: 92.7676
+2022-05-14 21:55:35,513 - mmdet - INFO - Epoch [2][1100/2932]	lr: 2.500e-05, eta: 10:32:15, time: 1.333, data_time: 0.005, stage0_loss_cls: 1.1035, stage0_pos_acc: 44.1578, stage0_loss_dfl: 0.9410, stage0_loss_bbox: 0.9225, stage0_loss_iou: 1.3186, stage1_loss_cls: 0.9302, stage1_pos_acc: 59.6712, stage1_loss_dfl: 0.9218, stage1_loss_bbox: 0.6919, stage1_loss_iou: 1.1141, loss: 7.9437, grad_norm: 92.1190
+2022-05-14 21:56:39,690 - mmdet - INFO - Epoch [2][1150/2932]	lr: 2.500e-05, eta: 10:31:39, time: 1.284, data_time: 0.005, stage0_loss_cls: 1.1214, stage0_pos_acc: 39.6656, stage0_loss_dfl: 0.9408, stage0_loss_bbox: 0.8901, stage0_loss_iou: 1.3638, stage1_loss_cls: 0.9439, stage1_pos_acc: 52.8420, stage1_loss_dfl: 0.9212, stage1_loss_bbox: 0.6559, stage1_loss_iou: 1.1375, loss: 7.9747, grad_norm: 97.6017
+2022-05-14 21:57:44,760 - mmdet - INFO - Epoch [2][1200/2932]	lr: 2.500e-05, eta: 10:31:09, time: 1.301, data_time: 0.005, stage0_loss_cls: 1.1246, stage0_pos_acc: 40.9463, stage0_loss_dfl: 0.9407, stage0_loss_bbox: 0.9343, stage0_loss_iou: 1.3994, stage1_loss_cls: 0.9396, stage1_pos_acc: 56.5286, stage1_loss_dfl: 0.9206, stage1_loss_bbox: 0.6865, stage1_loss_iou: 1.1795, loss: 8.1253, grad_norm: 96.5863
+2022-05-14 21:58:47,328 - mmdet - INFO - Epoch [2][1250/2932]	lr: 2.500e-05, eta: 10:30:20, time: 1.251, data_time: 0.004, stage0_loss_cls: 1.1024, stage0_pos_acc: 45.4043, stage0_loss_dfl: 0.9407, stage0_loss_bbox: 0.9069, stage0_loss_iou: 1.3447, stage1_loss_cls: 0.9134, stage1_pos_acc: 60.0863, stage1_loss_dfl: 0.9204, stage1_loss_bbox: 0.6343, stage1_loss_iou: 1.1057, loss: 7.8685, grad_norm: 98.6049
+2022-05-14 21:59:51,501 - mmdet - INFO - Epoch [2][1300/2932]	lr: 2.500e-05, eta: 10:29:42, time: 1.283, data_time: 0.005, stage0_loss_cls: 1.1276, stage0_pos_acc: 40.6095, stage0_loss_dfl: 0.9407, stage0_loss_bbox: 0.9233, stage0_loss_iou: 1.3482, stage1_loss_cls: 0.9490, stage1_pos_acc: 53.6002, stage1_loss_dfl: 0.9202, stage1_loss_bbox: 0.6778, stage1_loss_iou: 1.1264, loss: 8.0131, grad_norm: 95.3502
+2022-05-14 22:00:53,182 - mmdet - INFO - Epoch [2][1350/2932]	lr: 2.500e-05, eta: 10:28:46, time: 1.234, data_time: 0.004, stage0_loss_cls: 1.1119, stage0_pos_acc: 41.1554, stage0_loss_dfl: 0.9405, stage0_loss_bbox: 0.9246, stage0_loss_iou: 1.3626, stage1_loss_cls: 0.9403, stage1_pos_acc: 57.7814, stage1_loss_dfl: 0.9193, stage1_loss_bbox: 0.6684, stage1_loss_iou: 1.1300, loss: 7.9975, grad_norm: 97.6919
+2022-05-14 22:01:53,916 - mmdet - INFO - Epoch [2][1400/2932]	lr: 2.500e-05, eta: 10:27:42, time: 1.215, data_time: 0.004, stage0_loss_cls: 1.0751, stage0_pos_acc: 47.0100, stage0_loss_dfl: 0.9403, stage0_loss_bbox: 0.9042, stage0_loss_iou: 1.3853, stage1_loss_cls: 0.9041, stage1_pos_acc: 58.4970, stage1_loss_dfl: 0.9189, stage1_loss_bbox: 0.6732, stage1_loss_iou: 1.1647, loss: 7.9660, grad_norm: 98.3588
+2022-05-14 22:02:56,843 - mmdet - INFO - Epoch [2][1450/2932]	lr: 2.500e-05, eta: 10:26:55, time: 1.259, data_time: 0.004, stage0_loss_cls: 1.0965, stage0_pos_acc: 44.1749, stage0_loss_dfl: 0.9403, stage0_loss_bbox: 0.8905, stage0_loss_iou: 1.3597, stage1_loss_cls: 0.9270, stage1_pos_acc: 56.4537, stage1_loss_dfl: 0.9190, stage1_loss_bbox: 0.6564, stage1_loss_iou: 1.1246, loss: 7.9142, grad_norm: 101.6008
+2022-05-14 22:04:00,853 - mmdet - INFO - Epoch [2][1500/2932]	lr: 2.500e-05, eta: 10:26:14, time: 1.280, data_time: 0.004, stage0_loss_cls: 1.1133, stage0_pos_acc: 44.2743, stage0_loss_dfl: 0.9403, stage0_loss_bbox: 0.9551, stage0_loss_iou: 1.3588, stage1_loss_cls: 0.9384, stage1_pos_acc: 57.6501, stage1_loss_dfl: 0.9190, stage1_loss_bbox: 0.6853, stage1_loss_iou: 1.1352, loss: 8.0454, grad_norm: 98.5511
+2022-05-14 22:05:03,728 - mmdet - INFO - Epoch [2][1550/2932]	lr: 2.500e-05, eta: 10:25:25, time: 1.257, data_time: 0.004, stage0_loss_cls: 1.0801, stage0_pos_acc: 44.9477, stage0_loss_dfl: 0.9401, stage0_loss_bbox: 0.9261, stage0_loss_iou: 1.3723, stage1_loss_cls: 0.8965, stage1_pos_acc: 60.5995, stage1_loss_dfl: 0.9180, stage1_loss_bbox: 0.6626, stage1_loss_iou: 1.1380, loss: 7.9337, grad_norm: 96.4947
+2022-05-14 22:06:06,481 - mmdet - INFO - Epoch [2][1600/2932]	lr: 2.500e-05, eta: 10:24:35, time: 1.255, data_time: 0.005, stage0_loss_cls: 1.0634, stage0_pos_acc: 47.5783, stage0_loss_dfl: 0.9400, stage0_loss_bbox: 0.8720, stage0_loss_iou: 1.3605, stage1_loss_cls: 0.8744, stage1_pos_acc: 62.4407, stage1_loss_dfl: 0.9178, stage1_loss_bbox: 0.6276, stage1_loss_iou: 1.1328, loss: 7.7885, grad_norm: 104.0594
+2022-05-14 22:07:08,559 - mmdet - INFO - Epoch [2][1650/2932]	lr: 2.500e-05, eta: 10:23:40, time: 1.242, data_time: 0.004, stage0_loss_cls: 1.1385, stage0_pos_acc: 43.4990, stage0_loss_dfl: 0.9400, stage0_loss_bbox: 0.8894, stage0_loss_iou: 1.3368, stage1_loss_cls: 0.9631, stage1_pos_acc: 54.0507, stage1_loss_dfl: 0.9177, stage1_loss_bbox: 0.6420, stage1_loss_iou: 1.0978, loss: 7.9252, grad_norm: 106.1513
+2022-05-14 22:08:13,460 - mmdet - INFO - Epoch [2][1700/2932]	lr: 2.500e-05, eta: 10:23:04, time: 1.298, data_time: 0.005, stage0_loss_cls: 1.0661, stage0_pos_acc: 44.8450, stage0_loss_dfl: 0.9400, stage0_loss_bbox: 0.9170, stage0_loss_iou: 1.3825, stage1_loss_cls: 0.9112, stage1_pos_acc: 56.5909, stage1_loss_dfl: 0.9175, stage1_loss_bbox: 0.6393, stage1_loss_iou: 1.1400, loss: 7.9135, grad_norm: 93.6698
+2022-05-14 22:09:20,632 - mmdet - INFO - Epoch [2][1750/2932]	lr: 2.500e-05, eta: 10:22:42, time: 1.343, data_time: 0.005, stage0_loss_cls: 1.0682, stage0_pos_acc: 42.1377, stage0_loss_dfl: 0.9397, stage0_loss_bbox: 0.9399, stage0_loss_iou: 1.4411, stage1_loss_cls: 0.9059, stage1_pos_acc: 55.5302, stage1_loss_dfl: 0.9170, stage1_loss_bbox: 0.6884, stage1_loss_iou: 1.2277, loss: 8.1280, grad_norm: 93.6071
+2022-05-14 22:10:26,024 - mmdet - INFO - Epoch [2][1800/2932]	lr: 2.500e-05, eta: 10:22:07, time: 1.308, data_time: 0.005, stage0_loss_cls: 1.1062, stage0_pos_acc: 48.1068, stage0_loss_dfl: 0.9399, stage0_loss_bbox: 0.9081, stage0_loss_iou: 1.3033, stage1_loss_cls: 0.9426, stage1_pos_acc: 56.8746, stage1_loss_dfl: 0.9173, stage1_loss_bbox: 0.6463, stage1_loss_iou: 1.0744, loss: 7.8380, grad_norm: 100.9075
+2022-05-14 22:11:35,415 - mmdet - INFO - Epoch [2][1850/2932]	lr: 2.500e-05, eta: 10:21:57, time: 1.388, data_time: 0.005, stage0_loss_cls: 1.1042, stage0_pos_acc: 43.8898, stage0_loss_dfl: 0.9397, stage0_loss_bbox: 0.9358, stage0_loss_iou: 1.3550, stage1_loss_cls: 0.9263, stage1_pos_acc: 56.7413, stage1_loss_dfl: 0.9167, stage1_loss_bbox: 0.6730, stage1_loss_iou: 1.1248, loss: 7.9755, grad_norm: 112.8647
+2022-05-14 22:12:41,797 - mmdet - INFO - Epoch [2][1900/2932]	lr: 2.500e-05, eta: 10:21:27, time: 1.328, data_time: 0.005, stage0_loss_cls: 1.0678, stage0_pos_acc: 43.1152, stage0_loss_dfl: 0.9395, stage0_loss_bbox: 0.9064, stage0_loss_iou: 1.3918, stage1_loss_cls: 0.8730, stage1_pos_acc: 55.6048, stage1_loss_dfl: 0.9158, stage1_loss_bbox: 0.6494, stage1_loss_iou: 1.1744, loss: 7.9182, grad_norm: 93.9584
+2022-05-14 22:13:48,759 - mmdet - INFO - Epoch [2][1950/2932]	lr: 2.500e-05, eta: 10:21:00, time: 1.339, data_time: 0.005, stage0_loss_cls: 1.1138, stage0_pos_acc: 42.7130, stage0_loss_dfl: 0.9396, stage0_loss_bbox: 0.9176, stage0_loss_iou: 1.3295, stage1_loss_cls: 0.9484, stage1_pos_acc: 52.8083, stage1_loss_dfl: 0.9161, stage1_loss_bbox: 0.6827, stage1_loss_iou: 1.1208, loss: 7.9685, grad_norm: 102.4042
+2022-05-14 22:14:54,947 - mmdet - INFO - Epoch [2][2000/2932]	lr: 2.500e-05, eta: 10:20:28, time: 1.324, data_time: 0.005, stage0_loss_cls: 1.0816, stage0_pos_acc: 40.3471, stage0_loss_dfl: 0.9395, stage0_loss_bbox: 0.9321, stage0_loss_iou: 1.4064, stage1_loss_cls: 0.9190, stage1_pos_acc: 55.6860, stage1_loss_dfl: 0.9153, stage1_loss_bbox: 0.6937, stage1_loss_iou: 1.2071, loss: 8.0948, grad_norm: 90.1800
+2022-05-14 22:16:02,196 - mmdet - INFO - Epoch [2][2050/2932]	lr: 2.500e-05, eta: 10:20:01, time: 1.345, data_time: 0.005, stage0_loss_cls: 1.0768, stage0_pos_acc: 43.1667, stage0_loss_dfl: 0.9394, stage0_loss_bbox: 0.8965, stage0_loss_iou: 1.3342, stage1_loss_cls: 0.8878, stage1_pos_acc: 58.5487, stage1_loss_dfl: 0.9149, stage1_loss_bbox: 0.6261, stage1_loss_iou: 1.0751, loss: 7.7507, grad_norm: 98.2228
+2022-05-14 22:17:09,532 - mmdet - INFO - Epoch [2][2100/2932]	lr: 2.500e-05, eta: 10:19:34, time: 1.347, data_time: 0.005, stage0_loss_cls: 1.1065, stage0_pos_acc: 44.8345, stage0_loss_dfl: 0.9393, stage0_loss_bbox: 0.9115, stage0_loss_iou: 1.3153, stage1_loss_cls: 0.9440, stage1_pos_acc: 57.7512, stage1_loss_dfl: 0.9148, stage1_loss_bbox: 0.6543, stage1_loss_iou: 1.1001, loss: 7.8857, grad_norm: 98.5950
+2022-05-14 22:18:14,755 - mmdet - INFO - Epoch [2][2150/2932]	lr: 2.500e-05, eta: 10:18:53, time: 1.304, data_time: 0.005, stage0_loss_cls: 1.0819, stage0_pos_acc: 44.3391, stage0_loss_dfl: 0.9391, stage0_loss_bbox: 0.8942, stage0_loss_iou: 1.3531, stage1_loss_cls: 0.9096, stage1_pos_acc: 56.7329, stage1_loss_dfl: 0.9138, stage1_loss_bbox: 0.6372, stage1_loss_iou: 1.1082, loss: 7.8371, grad_norm: 104.3032
+2022-05-14 22:19:21,094 - mmdet - INFO - Epoch [2][2200/2932]	lr: 2.500e-05, eta: 10:18:19, time: 1.327, data_time: 0.005, stage0_loss_cls: 1.0370, stage0_pos_acc: 47.1185, stage0_loss_dfl: 0.9390, stage0_loss_bbox: 0.8870, stage0_loss_iou: 1.3989, stage1_loss_cls: 0.8858, stage1_pos_acc: 58.0524, stage1_loss_dfl: 0.9135, stage1_loss_bbox: 0.6636, stage1_loss_iou: 1.1789, loss: 7.9037, grad_norm: 96.7573
+2022-05-14 22:20:27,968 - mmdet - INFO - Epoch [2][2250/2932]	lr: 2.500e-05, eta: 10:17:47, time: 1.337, data_time: 0.005, stage0_loss_cls: 1.0488, stage0_pos_acc: 47.4931, stage0_loss_dfl: 0.9390, stage0_loss_bbox: 0.8769, stage0_loss_iou: 1.3408, stage1_loss_cls: 0.8733, stage1_pos_acc: 59.8197, stage1_loss_dfl: 0.9135, stage1_loss_bbox: 0.6538, stage1_loss_iou: 1.1160, loss: 7.7621, grad_norm: 92.8715
+2022-05-14 22:21:32,883 - mmdet - INFO - Epoch [2][2300/2932]	lr: 2.500e-05, eta: 10:17:03, time: 1.298, data_time: 0.005, stage0_loss_cls: 1.0626, stage0_pos_acc: 48.1995, stage0_loss_dfl: 0.9389, stage0_loss_bbox: 0.8833, stage0_loss_iou: 1.3545, stage1_loss_cls: 0.8973, stage1_pos_acc: 60.1159, stage1_loss_dfl: 0.9131, stage1_loss_bbox: 0.6310, stage1_loss_iou: 1.1087, loss: 7.7895, grad_norm: 100.9163
+2022-05-14 22:22:38,007 - mmdet - INFO - Epoch [2][2350/2932]	lr: 2.500e-05, eta: 10:16:20, time: 1.302, data_time: 0.004, stage0_loss_cls: 1.0504, stage0_pos_acc: 46.8807, stage0_loss_dfl: 0.9388, stage0_loss_bbox: 0.8909, stage0_loss_iou: 1.3579, stage1_loss_cls: 0.8825, stage1_pos_acc: 60.6235, stage1_loss_dfl: 0.9124, stage1_loss_bbox: 0.6419, stage1_loss_iou: 1.1290, loss: 7.8037, grad_norm: 94.8470
+2022-05-14 22:23:44,428 - mmdet - INFO - Epoch [2][2400/2932]	lr: 2.500e-05, eta: 10:15:44, time: 1.328, data_time: 0.005, stage0_loss_cls: 1.0841, stage0_pos_acc: 42.5065, stage0_loss_dfl: 0.9387, stage0_loss_bbox: 0.9182, stage0_loss_iou: 1.3858, stage1_loss_cls: 0.9500, stage1_pos_acc: 55.1025, stage1_loss_dfl: 0.9119, stage1_loss_bbox: 0.6759, stage1_loss_iou: 1.1711, loss: 8.0357, grad_norm: 96.7604
+2022-05-14 22:24:50,954 - mmdet - INFO - Epoch [2][2450/2932]	lr: 2.500e-05, eta: 10:15:08, time: 1.331, data_time: 0.005, stage0_loss_cls: 1.0260, stage0_pos_acc: 45.9987, stage0_loss_dfl: 0.9388, stage0_loss_bbox: 0.8975, stage0_loss_iou: 1.3953, stage1_loss_cls: 0.8886, stage1_pos_acc: 59.4498, stage1_loss_dfl: 0.9120, stage1_loss_bbox: 0.6383, stage1_loss_iou: 1.1645, loss: 7.8611, grad_norm: 110.8310
+2022-05-14 22:25:57,106 - mmdet - INFO - Epoch [2][2500/2932]	lr: 2.500e-05, eta: 10:14:29, time: 1.323, data_time: 0.005, stage0_loss_cls: 1.0756, stage0_pos_acc: 44.5403, stage0_loss_dfl: 0.9386, stage0_loss_bbox: 0.8685, stage0_loss_iou: 1.3224, stage1_loss_cls: 0.9289, stage1_pos_acc: 56.4077, stage1_loss_dfl: 0.9117, stage1_loss_bbox: 0.6204, stage1_loss_iou: 1.0843, loss: 7.7506, grad_norm: 106.7446
+2022-05-14 22:27:02,348 - mmdet - INFO - Epoch [2][2550/2932]	lr: 2.500e-05, eta: 10:13:45, time: 1.305, data_time: 0.005, stage0_loss_cls: 1.0530, stage0_pos_acc: 48.2860, stage0_loss_dfl: 0.9385, stage0_loss_bbox: 0.8582, stage0_loss_iou: 1.3499, stage1_loss_cls: 0.8987, stage1_pos_acc: 60.4804, stage1_loss_dfl: 0.9112, stage1_loss_bbox: 0.5959, stage1_loss_iou: 1.0939, loss: 7.6994, grad_norm: 115.5768
+2022-05-14 22:28:08,795 - mmdet - INFO - Epoch [2][2600/2932]	lr: 2.500e-05, eta: 10:13:07, time: 1.329, data_time: 0.005, stage0_loss_cls: 1.0970, stage0_pos_acc: 43.2798, stage0_loss_dfl: 0.9384, stage0_loss_bbox: 0.8732, stage0_loss_iou: 1.2860, stage1_loss_cls: 0.9351, stage1_pos_acc: 54.5910, stage1_loss_dfl: 0.9108, stage1_loss_bbox: 0.6189, stage1_loss_iou: 1.0385, loss: 7.6979, grad_norm: 105.1757
+2022-05-14 22:29:13,595 - mmdet - INFO - Epoch [2][2650/2932]	lr: 2.500e-05, eta: 10:12:19, time: 1.296, data_time: 0.005, stage0_loss_cls: 1.0855, stage0_pos_acc: 46.1283, stage0_loss_dfl: 0.9385, stage0_loss_bbox: 0.9295, stage0_loss_iou: 1.3000, stage1_loss_cls: 0.9189, stage1_pos_acc: 59.3868, stage1_loss_dfl: 0.9109, stage1_loss_bbox: 0.6830, stage1_loss_iou: 1.0579, loss: 7.8243, grad_norm: 101.8499
+2022-05-14 22:30:18,416 - mmdet - INFO - Epoch [2][2700/2932]	lr: 2.500e-05, eta: 10:11:32, time: 1.296, data_time: 0.005, stage0_loss_cls: 1.0587, stage0_pos_acc: 48.9268, stage0_loss_dfl: 0.9383, stage0_loss_bbox: 0.9079, stage0_loss_iou: 1.3820, stage1_loss_cls: 0.8779, stage1_pos_acc: 61.6920, stage1_loss_dfl: 0.9102, stage1_loss_bbox: 0.6402, stage1_loss_iou: 1.1307, loss: 7.8458, grad_norm: 106.2131
+2022-05-14 22:31:20,638 - mmdet - INFO - Epoch [2][2750/2932]	lr: 2.500e-05, eta: 10:10:31, time: 1.244, data_time: 0.004, stage0_loss_cls: 1.0335, stage0_pos_acc: 47.2369, stage0_loss_dfl: 0.9382, stage0_loss_bbox: 0.8685, stage0_loss_iou: 1.3861, stage1_loss_cls: 0.8645, stage1_pos_acc: 58.7738, stage1_loss_dfl: 0.9097, stage1_loss_bbox: 0.6085, stage1_loss_iou: 1.1553, loss: 7.7643, grad_norm: 104.6484
+2022-05-14 22:32:22,686 - mmdet - INFO - Epoch [2][2800/2932]	lr: 2.500e-05, eta: 10:09:28, time: 1.241, data_time: 0.004, stage0_loss_cls: 1.0462, stage0_pos_acc: 44.8129, stage0_loss_dfl: 0.9381, stage0_loss_bbox: 0.9040, stage0_loss_iou: 1.4096, stage1_loss_cls: 0.8823, stage1_pos_acc: 60.0385, stage1_loss_dfl: 0.9094, stage1_loss_bbox: 0.6582, stage1_loss_iou: 1.1769, loss: 7.9246, grad_norm: 101.4368
+2022-05-14 22:33:25,453 - mmdet - INFO - Epoch [2][2850/2932]	lr: 2.500e-05, eta: 10:08:30, time: 1.255, data_time: 0.004, stage0_loss_cls: 1.0383, stage0_pos_acc: 47.3781, stage0_loss_dfl: 0.9379, stage0_loss_bbox: 0.8699, stage0_loss_iou: 1.3826, stage1_loss_cls: 0.8828, stage1_pos_acc: 58.8508, stage1_loss_dfl: 0.9088, stage1_loss_bbox: 0.6210, stage1_loss_iou: 1.1581, loss: 7.7994, grad_norm: 99.2030
+2022-05-14 22:34:31,507 - mmdet - INFO - Epoch [2][2900/2932]	lr: 2.500e-05, eta: 10:07:48, time: 1.321, data_time: 0.005, stage0_loss_cls: 1.0585, stage0_pos_acc: 45.6653, stage0_loss_dfl: 0.9381, stage0_loss_bbox: 0.8833, stage0_loss_iou: 1.3311, stage1_loss_cls: 0.8937, stage1_pos_acc: 61.1293, stage1_loss_dfl: 0.9091, stage1_loss_bbox: 0.6320, stage1_loss_iou: 1.0923, loss: 7.7381, grad_norm: 97.8909
+2022-05-14 22:35:12,810 - mmdet - INFO - Saving checkpoint at 2 epochs
+[>>>>>>>>>>>>>>>>>>>>>>>>>>>] 4952/4952, 6.7 task/s, elapsed: 744s, ETA:     0s2022-05-14 22:47:47,779 - mmdet - INFO - Evaluating bbox...
+Loading and preparing results...
+DONE (t=2.34s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=31.66s).
+Accumulating evaluation results...
+DONE (t=10.68s).
+2022-05-14 22:48:33,839 - mmdet - INFO -
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.030
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.078
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.018
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.007
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.028
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.050
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.158
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.158
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.158
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.018
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.146
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.275
+2022-05-14 22:48:34,641 - mmdet - INFO -
+========= 各任务阶段测试结果 =========
+2022-05-14 22:48:34,642 - mmdet - INFO - task_mAP_list==> [{}]
+2022-05-14 22:48:34,642 - mmdet - INFO - task_mAP_dict==> {'Task1(80类)': 0, 'TaskAvgMAP': 0.0}
+2022-05-14 22:48:34,642 - mmdet - INFO - ==================================
+2022-05-14 22:48:34,706 - mmdet - INFO - Exp name: aaamixer_resnet_qoqo.py
+2022-05-14 22:48:34,708 - mmdet - INFO - Epoch(val) [2][4952]	bbox_mAP: 0.0300, bbox_mAP_50: 0.0780, bbox_mAP_75: 0.0180, bbox_mAP_s: 0.0070, bbox_mAP_m: 0.0280, bbox_mAP_l: 0.0500, bbox_mAP_copypaste: 0.030 0.078 0.018 0.007 0.028 0.050
+2022-05-14 22:49:41,951 - mmdet - INFO - Epoch [3][50/2932]	lr: 2.500e-05, eta: 10:03:14, time: 1.345, data_time: 0.052, stage0_loss_cls: 1.0414, stage0_pos_acc: 45.0859, stage0_loss_dfl: 0.9378, stage0_loss_bbox: 0.8531, stage0_loss_iou: 1.3479, stage1_loss_cls: 0.8920, stage1_pos_acc: 56.7575, stage1_loss_dfl: 0.9084, stage1_loss_bbox: 0.6353, stage1_loss_iou: 1.1161, loss: 7.7319, grad_norm: 107.4274
+2022-05-14 22:50:46,628 - mmdet - INFO - Epoch [3][100/2932]	lr: 2.500e-05, eta: 10:02:26, time: 1.294, data_time: 0.004, stage0_loss_cls: 1.0508, stage0_pos_acc: 46.7696, stage0_loss_dfl: 0.9377, stage0_loss_bbox: 0.8625, stage0_loss_iou: 1.3211, stage1_loss_cls: 0.9159, stage1_pos_acc: 57.4862, stage1_loss_dfl: 0.9084, stage1_loss_bbox: 0.6051, stage1_loss_iou: 1.0814, loss: 7.6829, grad_norm: 103.7474
+2022-05-14 22:51:51,145 - mmdet - INFO - Epoch [3][150/2932]	lr: 2.500e-05, eta: 10:01:37, time: 1.290, data_time: 0.004, stage0_loss_cls: 1.0362, stage0_pos_acc: 47.9273, stage0_loss_dfl: 0.9376, stage0_loss_bbox: 0.8721, stage0_loss_iou: 1.3514, stage1_loss_cls: 0.8689, stage1_pos_acc: 62.3550, stage1_loss_dfl: 0.9080, stage1_loss_bbox: 0.6060, stage1_loss_iou: 1.0923, loss: 7.6725, grad_norm: 114.1698
+2022-05-14 22:52:55,918 - mmdet - INFO - Epoch [3][200/2932]	lr: 2.500e-05, eta: 10:00:49, time: 1.295, data_time: 0.004, stage0_loss_cls: 1.0315, stage0_pos_acc: 47.1350, stage0_loss_dfl: 0.9376, stage0_loss_bbox: 0.8663, stage0_loss_iou: 1.3624, stage1_loss_cls: 0.8833, stage1_pos_acc: 55.8347, stage1_loss_dfl: 0.9075, stage1_loss_bbox: 0.6130, stage1_loss_iou: 1.1230, loss: 7.7247, grad_norm: 108.8900
+2022-05-14 22:54:03,557 - mmdet - INFO - Epoch [3][250/2932]	lr: 2.500e-05, eta: 10:00:15, time: 1.353, data_time: 0.005, stage0_loss_cls: 1.0268, stage0_pos_acc: 50.5495, stage0_loss_dfl: 0.9376, stage0_loss_bbox: 0.8486, stage0_loss_iou: 1.3565, stage1_loss_cls: 0.8656, stage1_pos_acc: 63.7448, stage1_loss_dfl: 0.9072, stage1_loss_bbox: 0.5946, stage1_loss_iou: 1.1061, loss: 7.6429, grad_norm: 106.7402
+2022-05-14 22:55:09,992 - mmdet - INFO - Epoch [3][300/2932]	lr: 2.500e-05, eta: 9:59:34, time: 1.329, data_time: 0.005, stage0_loss_cls: 1.0357, stage0_pos_acc: 47.0390, stage0_loss_dfl: 0.9376, stage0_loss_bbox: 0.9026, stage0_loss_iou: 1.3547, stage1_loss_cls: 0.8882, stage1_pos_acc: 60.3827, stage1_loss_dfl: 0.9069, stage1_loss_bbox: 0.6453, stage1_loss_iou: 1.1183, loss: 7.7893, grad_norm: 101.6976
+2022-05-14 22:56:16,640 - mmdet - INFO - Epoch [3][350/2932]	lr: 2.500e-05, eta: 9:58:54, time: 1.333, data_time: 0.005, stage0_loss_cls: 1.0962, stage0_pos_acc: 42.3187, stage0_loss_dfl: 0.9375, stage0_loss_bbox: 0.8847, stage0_loss_iou: 1.3286, stage1_loss_cls: 0.9219, stage1_pos_acc: 58.3886, stage1_loss_dfl: 0.9069, stage1_loss_bbox: 0.6314, stage1_loss_iou: 1.0879, loss: 7.7951, grad_norm: 109.1664
+Process finished with exit code 0
