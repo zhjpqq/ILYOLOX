@@ -50,8 +50,6 @@ The master branch works with **PyTorch 1.5+**.
 
 <img src="ilyolox/coco-2xsteps.png">
 
-<img src="ilyolox/cocox4-il.png">
-
 ## Traing & Evaluation
 
 ```
