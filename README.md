@@ -1,22 +1,11 @@
-<div align="center">
-  <img src="resources/mmdet-logo.png" width="600"/>
-  <div>&nbsp;</div>
-  <div align="center">
-    <b>OpenMMLab website</b>
-    <sup>
-      <a href="https://openmmlab.com">
-        <i>HOT</i>
-      </a>
-    </sup>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <b>OpenMMLab platform</b>
-    <sup>
-      <a href="https://platform.openmmlab.com">
-        <i>TRY IT OUT</i>
-      </a>
-    </sup>
-  </div>
-  <div>&nbsp;</div>
+## Incremental (Continual) Object Detection Frame based on MMDetection
+
+# Center Resampling and Collaborative Knowledge Distillation Strategies for Class Incremental Object Detection
+
+MMDetection is an open source object detection toolbox based on PyTorch. It is
+a part of the [OpenMMLab](https://openmmlab.com/) project.
+
+The master branch works with **PyTorch 1.5+**.
 
 [![PyPI](https://img.shields.io/pypi/v/mmdet)](https://pypi.org/project/mmdet)
 [![docs](https://img.shields.io/badge/docs-latest-blue)](https://mmdetection.readthedocs.io/en/latest/)
@@ -24,33 +13,39 @@
 [![license](https://img.shields.io/github/license/open-mmlab/mmdetection.svg)](https://github.com/open-mmlab/mmdetection/blob/master/LICENSE)
 [![open issues](https://isitmaintained.com/badge/open/open-mmlab/mmdetection.svg)](https://github.com/open-mmlab/mmdetection/issues)
 
-  <img src="https://user-images.githubusercontent.com/12907710/137271636-56ba1cd2-b110-4812-8221-b4c120320aa9.png"/>
 
-[📘Documentation](https://mmdetection.readthedocs.io/en/v2.21.0/) |
-[🛠️Installation](https://mmdetection.readthedocs.io/en/v2.21.0/get_started.html) |
-[👀Model Zoo](https://mmdetection.readthedocs.io/en/v2.21.0/model_zoo.html) |
-[🆕Update News](https://mmdetection.readthedocs.io/en/v2.21.0/changelog.html) |
-[🚀Ongoing Projects](https://github.com/open-mmlab/mmdetection/projects) |
-[🤔Reporting Issues](https://github.com/open-mmlab/mmdetection/issues/new/choose)
+## 1. Abstract
+Catastrophic forgetting is the key problem in Class Incremental Object Detection(CIOD) task. 
+Knowledge distillation has been proved to be an effective way to solve this problem.However, 
+most previous works need to combine several distillation methods including feature, 
+classification and location to work together.In this paper, our method only uses classification 
+distillation. First, an adaptive structured knowledge selection strategy is proposed to enhance 
+the excavation of detection knowledge from teacher model. Second, a collaborative knowledge 
+transfer strategy is proposed to enhance the knowledge transfer from teacher model to student 
+model. We demonstrate that the reasonable selection and transfer strategy is the key to overcome 
+catastrophic forgetting for CIOD task. Extensive experiments conducted on COCO2017 demonstrate 
+that our method achieves state-of-the-art results under various scenarios, which gives a remarkable 
+relative improvement by a large margin than the previous best results under multi-steps incremental 
+learning. Code is available at https://github.com/zhjpqq/ILYOLOX.
 
-</div>
 
-## Incremental(Continual) Object Detection Frame based on MMDetection
+## 2. Network Architecture
+![ilyolox/ilyolox-overall-architecture.png](ilyolox/ilyolox-overall-architecture.png)
 
-MMDetection is an open source object detection toolbox based on PyTorch. It is
-a part of the [OpenMMLab](https://openmmlab.com/) project.
+[comment]: <> (![ilyolox/ilyolox-overall-architecture.png]&#40;https://imgur.com/a/K87Lx6s&#41;)
 
-The master branch works with **PyTorch 1.5+**.
 
-## Incremental YOLOX
+## 3. Overall Performance
 
-<img src="ilyolox/ilyolox-overall-architecture.png">
+![ilyolox/coco-mlti-step-il.png](ilyolox/coco-mlti-step-il.png)
 
-<img src="ilyolox/coco-mlti-step-il.png">
+[comment]: <> (![ilyolox/coco-mlti-step-il.png]&#40;https://imgur.com/baV9ca5&#41;)
 
-<img src="ilyolox/coco-2xsteps.png">
+![ilyolox/coco-2xsteps.png](ilyolox/coco-2xsteps.png)
 
-## Traing & Evaluation
+[comment]: <> (![ilyolox/coco-2xsteps.png]&#40;https://imgur.com/TZN5MLC&#41;)
+
+## 4. Traing & Evaluation
 
 ```
 nohup tools/dist_train_increment.sh 1>$expdir/common_exp_il/nohup 2>&1 &
@@ -60,10 +55,11 @@ nohup tools/dist_train_increment.sh 1>$expdir/common_exp_il/nohup 2>&1 &
 tools/xdist_test.sh
 ```
 
-## Checkpoint Dowload
+## 5. Checkpoint Dowload
 
 Google Drive Preparing!
 
-## License
+
+## 6. License
 
 This project is released under the [Apache 2.0 license](LICENSE).
