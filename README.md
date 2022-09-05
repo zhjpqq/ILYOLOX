@@ -46,6 +46,9 @@ learning. Code is available at https://github.com/zhjpqq/ILYOLOX.
 
 [comment]: <> (![ilyolox/coco-mlti-step-il.png]&#40;https://imgur.com/baV9ca5&#41;)
 
+###**ERD is proposed at CVPR 2022: [Overcoming Catastrophic Forgetting in Incremental Object Detection via Elastic Response Distillation](https://arxiv.org/abs/2204.02136).** 
+
+
 [comment]: <> (![ilyolox/coco-2xsteps.png]&#40;ilyolox/coco-2xsteps.png&#41;)
 
 ![ilyolox/coco-2xsteps.png](https://img-blog.csdnimg.cn/49e0ffa12cb245f19688ebce53cf5070.png#pic_center)
