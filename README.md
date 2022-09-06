@@ -29,13 +29,10 @@ relative improvement by a large margin than the previous best results under mult
 learning. Code is available at https://github.com/zhjpqq/ILYOLOX.
 
 
-## 2. Network Architecture
+## 2. Network Architecture  XXXXXXXX
 
-[comment]: <> (![ilyolox/ilyolox-overall-architecture.png]&#40;ilyolox/ilyolox-overall-architecture.png&#41;)
+![image](https://img-blog.csdnimg.cn/67a88f7bf1be4dbca3fe6812bed37d66.png)
 
-![ilyolox/ilyolox-overall-architecture.png](https://img-blog.csdnimg.cn/67a88f7bf1be4dbca3fe6812bed37d66.png)
-
-[comment]: <> (![ilyolox/ilyolox-overall-architecture.png]&#40;https://imgur.com/a/K87Lx6s&#41;)
 
 
 ## 3. Overall Performance
