@@ -31,7 +31,7 @@ learning. Code is available at https://github.com/zhjpqq/ILYOLOX.
 
 ## 2. Network Architecture1111111
 
-![ilyolox/ilyolox-overall-architecture.png](https://img-blog.csdnimg.cn/7bfdfd09c9904baeb500da93eb8ff12b.png)
+![ilyolox/ilyolox-overall-architecture.png](https://img-blog.csdnimg.cn/67a88f7bf1be4dbca3fe6812bed37d66.png)
 
 ![ilyolox/ilyolox-overall-architecture.png](ilyolox/ilyolox-overall-architecture.png)
 
