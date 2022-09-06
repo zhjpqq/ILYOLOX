@@ -29,7 +29,7 @@ relative improvement by a large margin than the previous best results under mult
 learning. Code is available at https://github.com/zhjpqq/ILYOLOX.
 
 
-## 2. Network Architecture1111111
+## 2. Network Architecture
 
 ![ilyolox/ilyolox-overall-architecture.png](https://img-blog.csdnimg.cn/67a88f7bf1be4dbca3fe6812bed37d66.png)
 
@@ -43,7 +43,7 @@ learning. Code is available at https://github.com/zhjpqq/ILYOLOX.
 ![ilyolox/coco-mlti-step-il.png](https://img-blog.csdnimg.cn/7bfdfd09c9904baeb500da93eb8ff12b.png)
 
 
-###**ERD is proposed at CVPR 2022: [Overcoming Catastrophic Forgetting in Incremental Object Detection via Elastic Response Distillation](https://arxiv.org/abs/2204.02136).** 
+###**ERD is proposed in CVPR 2022: [Overcoming Catastrophic Forgetting in Incremental Object Detection via Elastic Response Distillation](https://arxiv.org/abs/2204.02136).** 
 
 
 [comment]: <> (![ilyolox/coco-2xsteps.png]&#40;ilyolox/coco-2xsteps.png&#41;)
