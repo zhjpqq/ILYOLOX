@@ -2,10 +2,11 @@
 
 # Center Resampling and Collaborative Knowledge Distillation Strategies for Class Incremental Object Detection
 
-MMDetection is an open source object detection toolbox based on PyTorch. It is
-a part of the [OpenMMLab](https://openmmlab.com/) project.
+[comment]: <> (MMDetection is an open source object detection toolbox based on PyTorch. It is)
 
-The master branch works with **PyTorch 1.5+**.
+[comment]: <> (a part of the [OpenMMLab]&#40;https://openmmlab.com/&#41; project.)
+
+[comment]: <> (The master branch works with **PyTorch 1.5+**.)
 
 [![PyPI](https://img.shields.io/pypi/v/mmdet)](https://pypi.org/project/mmdet)
 [![docs](https://img.shields.io/badge/docs-latest-blue)](https://mmdetection.readthedocs.io/en/latest/)
