@@ -68,7 +68,7 @@ between incremental learning and overall learning. The code will be avaliable at
 ![ilyolox/coco-mlti-step-il.png](https://img-blog.csdnimg.cn/7bfdfd09c9904baeb500da93eb8ff12b.png)
 
 
-###**ERD** is proposed in CVPR 2022: [Overcoming Catastrophic Forgetting in Incremental Object Detection via Elastic Response Distillation](https://arxiv.org/abs/2204.02136).
+###**ERD** is proposed in CVPR 2022: Overcoming Catastrophic Forgetting in Incremental Object Detection via Elastic Response Distillation.
 
 
 [comment]: <> (![ilyolox/coco-2xsteps.png]&#40;ilyolox/coco-2xsteps.png&#41;)
