@@ -15,7 +15,7 @@
 [![open issues](https://isitmaintained.com/badge/open/open-mmlab/mmdetection.svg)](https://github.com/open-mmlab/mmdetection/issues)
 
 
-## 1. Abstract
+## 1. Abstract (New)
 
 [comment]: <> (Catastrophic forgetting is the key problem in Class Incremental Object Detection&#40;CIOD&#41; task. )
 
