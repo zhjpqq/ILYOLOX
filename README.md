@@ -19,15 +19,15 @@
 Catastrophic forgetting is the key problem in Class Incremental Object Detection(CIOD) task. 
 Knowledge distillation has been proved to be an effective way to solve this problem.However, 
 most previous works need to combine several distillation methods including feature, 
-classification and location to work together.In this paper, our method only uses classification 
-distillation. First, an adaptive structured knowledge selection strategy is proposed to enhance 
+classification, location and relation to work together. In this paper, we only use classification 
+distillation to build incremental detector. First, an adaptive structured knowledge selection strategy 
+is proposed to make a better trade-off between the quality and quantity of teacher outputs, thus enhancing 
 the excavation of detection knowledge from teacher model. Second, a collaborative knowledge 
-transfer strategy is proposed to enhance the knowledge transfer from teacher model to student 
-model. We demonstrate that the reasonable selection and transfer strategy is the key to overcome 
+transfer strategy is proposed to accelerate the collaboratively transfer between classification and location from teacher model to student 
+model. We demonstrate that the reasonable knowledge selection and transfer strategy are the keys to overcome 
 catastrophic forgetting for CIOD task. Extensive experiments conducted on COCO2017 demonstrate 
-that our method achieves state-of-the-art results under various scenarios, which gives a remarkable 
-relative improvement by a large margin than the previous best results under multi-steps incremental 
-learning. Code is available at https://github.com/zhjpqq/ILYOLOX.
+that our method achieves state-of-the-art results under various scenarios, which gives remarkable 
+improvements by large margins than the previous best results. Code is available at https://github.com/zhjpqq/ILYOLOX.
 
 
 ## 2. Network Architecture
