@@ -16,19 +16,43 @@
 
 
 ## 1. Abstract
-Catastrophic forgetting is the key problem in Class Incremental Object Detection(CIOD) task. 
-Knowledge distillation has been proved to be an effective way to solve this problem.However, 
-most previous works need to combine several distillation methods including feature, 
-classification, location and relation to work together. In this paper, we only use classification 
-distillation to build incremental detector. First, an adaptive structured knowledge selection strategy 
-is proposed to make a better trade-off between the quality and quantity of teacher outputs, thus enhancing 
-the excavation of detection knowledge from teacher model. Second, a collaborative knowledge 
-transfer strategy is proposed to accelerate the collaboratively transfer between classification and location from teacher model to student 
-model. We demonstrate that the reasonable knowledge selection and transfer strategy are the keys to overcome 
-catastrophic forgetting for CIOD task. Extensive experiments conducted on COCO2017 demonstrate 
-that our method achieves state-of-the-art results under various scenarios, which gives remarkable 
-improvements by large margins than the previous best results. Code is available at https://github.com/zhjpqq/ILYOLOX.
 
+[comment]: <> (Catastrophic forgetting is the key problem in Class Incremental Object Detection&#40;CIOD&#41; task. )
+
+[comment]: <> (Knowledge distillation has been proved to be an effective way to solve this problem.However, )
+
+[comment]: <> (most previous works need to combine several distillation methods including feature, )
+
+[comment]: <> (classification, location and relation to work together. In this paper, we only use classification )
+
+[comment]: <> (distillation to build incremental detector. First, an adaptive structured knowledge selection strategy )
+
+[comment]: <> (is proposed to make a better trade-off between the quality and quantity of teacher outputs, thus enhancing )
+
+[comment]: <> (the excavation of detection knowledge from teacher model. Second, a collaborative knowledge )
+
+[comment]: <> (transfer strategy is proposed to accelerate the collaboratively transfer between classification and location from teacher model to student )
+
+[comment]: <> (model. We demonstrate that the reasonable knowledge selection and transfer strategy are the keys to overcome )
+
+[comment]: <> (catastrophic forgetting for CIOD task. Extensive experiments conducted on COCO2017 demonstrate )
+
+[comment]: <> (that our method achieves state-of-the-art results under various scenarios, which gives remarkable )
+
+[comment]: <> (improvements by large margins than the previous best results. Code is available at https://github.com/zhjpqq/ILYOLOX.)
+
+Catastrophic forgetting is a key problem in Class Incremental object detection (CIOD). Knowledge distillation 
+has been proved to be an effective way to solve this problem. **However, most previous works combine several 
+distillation methods including feature, classification, location and relation into a complex framework to work together to 
+relieve catastrophic forgetting. In this paper, 
+we only use classification distillation to build incremental detectors**. Firstly, an adaptive structured knowledge 
+selection strategy is proposed to better balance the quality and quantity of teacher outputs, thus enhancing the 
+mining of detection knowledge from teacher model. Secondly, a collaborative knowledge transfer strategy is 
+proposed to accelerate the collaborative transfer of classification and location knowledge to student model. 
+Our work shows that reasonable knowledge selection and transfer strategies are the key to overcome catastrophic 
+forgetting and improve the performance of CIOD task. Extensive experiments on COCO2017 show that our method achieves 
+the state-of-art results under various incremental learning scenarios and significantly narrows the performance gap 
+between incremental learning and overall learning. The code will be avaliable at https://github.com/zhjpqq/ILYOLOX.
 
 ## 2. Network Architecture
 
