@@ -1,4 +1,4 @@
-## Incremental (Continual) Object Detection Frame based on MMDetection
+## Incremental (Continual) Object Detection Framework based on MMDetection
 
 # Center Resampling and Collaborative Knowledge Distillation Strategies for Class Incremental Object Detection
 
